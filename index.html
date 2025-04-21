@@ -1,45 +1,55 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
-  <meta charset="UTF-8">  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-  <title>Yorum Karşılığı Hediye</title>  
-  <style>  
-    body { text-align: center; font-family: sans-serif; padding: 20px; }  
-    #wheel { width: 200px; height: 200px; border: 5px solid #000; border-radius: 50%; margin: 20px auto; transition: transform 4s ease-out; background: conic-gradient(#f00 0% 25%, #0f0 25% 50%, #00f 50% 75%, #ff0 75% 100%); }  
-    #spinBtn { padding: 10px 20px; font-size: 18px; }  
-  </style>  </head>  
-<body>  
-  <h2>Çevir Kazan!</h2>  
-  <a href="https://search.google.com/local/writereview?placeid=ChIJ6wxZoToUyhQRoKtdTY6lQX0" target="_blank">Google Yorum Yap</a><br><br>  
-  <a href="https://instagram.com/cevattorlak" target="_blank">Instagram Sayfamızı Takip Et</a><br><br>    <input type="password" id="sifre" placeholder="Şifreyi girin" />  
-  <button onclick="giris()">Giriş Yap</button>    <div id="wheel" style="display:none;"></div>  
-  <button id="spinBtn" onclick="spin()" style="display:none;">Çevir!</button>  
-  <p id="sonuc"></p>    <script>  
-    const dogruSifre = "1234";  
-    let dondu = false;  
-  
-    function giris() {  
-      const girilen = document.getElementById("sifre").value;  
-      if (girilen === dogruSifre) {  
-        document.getElementById("wheel").style.display = "block";  
-        document.getElementById("spinBtn").style.display = "inline-block";  
-      } else {  
-        alert("Şifre yanlış!");  
-      }  
-    }  
-  
-    function spin() {  
-      if (dondu) return;  
-      dondu = true;  
-      const derece = Math.floor(Math.random() * 360) + 720;  
-      document.getElementById("wheel").style.transform = "rotate(" + derece + "deg)";  
-      setTimeout(() => {  
-        const sonuc = ["Anahtarlık", "Kalem", "Çakmak", "Not Defteri"];  
-        const index = Math.floor((derece % 360) / 90);  
-        document.getElementById("sonuc").innerText = "Tebrikler! Hediyeniz: " + sonuc[index];  
-      }, 4000);  
-    }  
-  </script>  
-</body>  
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yorum Karşılığı Hediye</title>
+  <style>
+    body { text-align: center; font-family: sans-serif; padding: 20px; }
+    #wheel { width: 200px; height: 200px; border: 5px solid #000; border-radius: 50%; margin: 20px auto; transition: transform 4s ease-out; background: conic-gradient(#f00 0% 25%, #0f0 25% 50%, #00f 50% 75%, #ff0 75% 100%); }
+    #spinBtn { padding: 10px 20px; font-size: 18px; }
+  </style>
+</head>
+<body>
+  <h2>Çevir Kazan!</h2>
+  <a href="https://search.google.com/local/writereview?placeid=ChIJ6wxZoToUyhQRoKtdTY6lQX0" target="_blank">Google Yorum Yap</a><br><br>
+
+  <a href="intent://instagram.com/_u/cevattorlak#Intent;package=com.instagram.android;scheme=https;end"
+     onclick="setTimeout(() => { window.open('https://instagram.com/cevattorlak', '_blank'); }, 1000);">
+     Instagram Sayfamızı Takip Et
+  </a><br><br>
+
+  <input type="password" id="sifre" placeholder="Şifreyi girin" />
+  <button onclick="giris()">Giriş Yap</button>
+  <div id="wheel" style="display:none;"></div>
+  <button id="spinBtn" onclick="spin()" style="display:none;">Çevir!</button>
+  <p id="sonuc"></p>
+
+  <script>
+    const dogruSifre = "1234";
+    let dondu = false;
+
+    function giris() {
+      const girilen = document.getElementById("sifre").value;
+      if (girilen === dogruSifre) {
+        document.getElementById("wheel").style.display = "block";
+        document.getElementById("spinBtn").style.display = "inline-block";
+      } else {
+        alert("Şifre yanlış!");
+      }
+    }
+
+    function spin() {
+      if (dondu) return;
+      dondu = true;
+      const derece = Math.floor(Math.random() * 360) + 720;
+      document.getElementById("wheel").style.transform = "rotate(" + derece + "deg)";
+      setTimeout(() => {
+        const sonuc = ["Anahtarlık", "Kalem", "Çakmak", "Not Defteri"];
+        const index = Math.floor((derece % 360) / 90);
+        document.getElementById("sonuc").innerText = "Tebrikler! Hediyeniz: " + sonuc[index];
+      }, 4000);
+    }
+  </script>
+</body>
 </html>
