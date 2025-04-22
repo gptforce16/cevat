@@ -1,55 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yorum Karşılığı Hediye</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menüm</title>
   <style>
-    body { text-align: center; font-family: sans-serif; padding: 20px; }
-    #wheel { width: 200px; height: 200px; border: 5px solid #000; border-radius: 50%; margin: 20px auto; transition: transform 4s ease-out; background: conic-gradient(#f00 0% 25%, #0f0 25% 50%, #00f 50% 75%, #ff0 75% 100%); }
-    #spinBtn { padding: 10px 20px; font-size: 18px; }
+    body { font-family: sans-serif; margin: 0; background: #f7f7f7; }
+    .header { background: white; padding: 10px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .category { font-size: 20px; font-weight: bold; margin: 20px 10px 10px; color: #c00; }
+    .item { background: white; margin: 10px; padding: 15px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .item-title { font-weight: bold; font-size: 16px; }
+    .item-desc { font-size: 14px; color: #666; margin-top: 4px; }
+    .item-price { color: red; font-weight: bold; font-size: 16px; margin-top: 6px; }
   </style>
 </head>
 <body>
-  <h2>Çevir Kazan!</h2>
-  <a href="https://search.google.com/local/writereview?placeid=ChIJ6wxZoToUyhQRoKtdTY6lQX0" target="_blank">Google Yorum Yap</a><br><br>
 
-  <a href="intent://instagram.com/_u/cevattorlak#Intent;package=com.instagram.android;scheme=https;end"
-     onclick="setTimeout(() => { window.open('https://instagram.com/cevattorlak', '_blank'); }, 1000);">
-     Instagram Sayfamızı Takip Et
-  </a><br><br>
+  <div class="header">
+    <img src="logo.png" alt="İşletme Logo" width="100" />
+  </div>
 
-  <input type="password" id="sifre" placeholder="Şifreyi girin" />
-  <button onclick="giris()">Giriş Yap</button>
-  <div id="wheel" style="display:none;"></div>
-  <button id="spinBtn" onclick="spin()" style="display:none;">Çevir!</button>
-  <p id="sonuc"></p>
+  <div class="menu"></div>
 
-  <script>
-    const dogruSifre = "1234";
-    let dondu = false;
+  <script type="module">
+    // Supabase bağlantısı
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
 
-    function giris() {
-      const girilen = document.getElementById("sifre").value;
-      if (girilen === dogruSifre) {
-        document.getElementById("wheel").style.display = "block";
-        document.getElementById("spinBtn").style.display = "inline-block";
-      } else {
-        alert("Şifre yanlış!");
+    const supabaseUrl = 'https://YOUR_PROJECT_ID.supabase.co';
+    const supabaseKey = 'YOUR_PUBLIC_ANON_KEY';
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const businessId = urlParams.get('id'); // işletme ID
+
+    const { data: urunler } = await supabase
+      .from('urunler')
+      .select('*')
+      .eq('isletme_id', businessId)
+      .eq('aktif', true)
+      .order('kategori, urun_adi');
+
+    const menuDiv = document.querySelector('.menu');
+    let currentKategori = '';
+
+    urunler.forEach(urun => {
+      if (urun.kategori !== currentKategori) {
+        currentKategori = urun.kategori;
+        menuDiv.innerHTML += `<div class="category">${currentKategori}</div>`;
       }
-    }
 
-    function spin() {
-      if (dondu) return;
-      dondu = true;
-      const derece = Math.floor(Math.random() * 360) + 720;
-      document.getElementById("wheel").style.transform = "rotate(" + derece + "deg)";
-      setTimeout(() => {
-        const sonuc = ["Anahtarlık", "Kalem", "Çakmak", "Not Defteri"];
-        const index = Math.floor((derece % 360) / 90);
-        document.getElementById("sonuc").innerText = "Tebrikler! Hediyeniz: " + sonuc[index];
-      }, 4000);
-    }
+      menuDiv.innerHTML += `
+        <div class="item">
+          <div class="item-title">${urun.urun_adi}</div>
+          <div class="item-desc">${urun.aciklama || ''}</div>
+          <div class="item-price">₺ ${urun.fiyat.toFixed(2)}</div>
+        </div>
+      `;
+    });
   </script>
+
 </body>
 </html>
