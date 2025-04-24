@@ -4,34 +4,83 @@
   <title>Hediye Çarkı</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    #wheel {
+    canvas {
+      border-radius: 50%;
+    }
+    #wheelCanvas {
       transition: transform 4s cubic-bezier(0.33, 1, 0.68, 1);
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-pink-100 to-blue-100 flex flex-col items-center justify-center h-screen">
+<body class="bg-gradient-to-br from-yellow-100 to-pink-100 flex flex-col items-center justify-center min-h-screen p-4">
   <h2 class="text-2xl font-bold mb-6">Hediye Çarkını Çevir!</h2>
-  <div class="relative w-64 h-64 mb-6">
-    <img id="wheel" src="https://upload.wikimedia.org/wikipedia/commons/8/8f/Wheel_of_Fortune.svg" class="w-full h-full" alt="Çark">
+  <div class="relative w-[300px] h-[300px] mb-6">
+    <canvas id="wheelCanvas" width="300" height="300"></canvas>
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
       <button onclick="spinWheel()" class="bg-red-500 text-white px-4 py-2 rounded-full shadow hover:bg-red-600">ÇEVİR</button>
     </div>
   </div>
   <div id="sonuc" class="text-lg font-semibold text-green-700"></div>  <script>
+    const canvas = document.getElementById("wheelCanvas");
+    const ctx = canvas.getContext("2d");
+    const size = canvas.width;
+    const center = size / 2;
+    const hediyeler = [
+      "Anahtarlık", "Çakmak", "Kalem", "Not Defteri",
+      "Sticker", "İndirim", "Bedava Menü", "Kupa"
+    ];
+    const colors = [
+      "#f87171", "#fb923c", "#facc15", "#4ade80",
+      "#60a5fa", "#818cf8", "#e879f9", "#f472b6"
+    ];
+
+    function drawWheel() {
+      const dilimSayisi = hediyeler.length;
+      const aci = (2 * Math.PI) / dilimSayisi;
+      for (let i = 0; i < dilimSayisi; i++) {
+        const start = i * aci;
+        const end = start + aci;
+
+        ctx.beginPath();
+        ctx.moveTo(center, center);
+        ctx.arc(center, center, center, start, end);
+        ctx.fillStyle = colors[i];
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(center, center);
+        ctx.rotate(start + aci / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "white";
+        ctx.font = "bold 14px sans-serif";
+        ctx.fillText(hediyeler[i], center - 10, 5);
+        ctx.restore();
+      }
+    }
+
+    drawWheel();
+
     let donuyor = false;
+    let aciToplam = 0;
 
     function spinWheel() {
       if (donuyor) return;
       donuyor = true;
 
-      const wheel = document.getElementById("wheel");
-      const randDeg = 360 * 5 + Math.floor(Math.random() * 360); // 5 tur + rastgele derece
-      wheel.style.transform = `rotate(${randDeg}deg)`;
+      const tur = 5;
+      const rastgeleAci = Math.floor(Math.random() * 360);
+      const hedefAci = tur * 360 + rastgeleAci;
+      aciToplam += hedefAci;
+
+      canvas.style.transform = `rotate(${aciToplam}deg)`;
 
       setTimeout(() => {
+        const derece = (360 - (aciToplam % 360)) % 360;
+        const kazananIndex = Math.floor(derece / (360 / hediyeler.length));
+        const kazanan = hediyeler[kazananIndex];
+        document.getElementById("sonuc").innerText = `Tebrikler! Kazandığınız hediye: ${kazanan}`;
         donuyor = false;
-        document.getElementById("sonuc").innerText = "Tebrikler! Kazandığınız hediye: ... (Örnek)";
-        // burada kazanılan hediyeyi hesaplayan backend/JS fonksiyonu entegre edilir
       }, 4000);
     }
   </script></body>
