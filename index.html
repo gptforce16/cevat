@@ -169,20 +169,7 @@
             background-color: rgba(0,0,255,0.1);
             border-top: 1px dashed blue;
             border-bottom: 1px dashed blue;
-        }
-        .casing-zone {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            background-color: rgba(200, 200, 200, 0.5); /* Gri renk */
-            border: 1px solid #999;
-            text-align: center;
-            font-size: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             box-sizing: border-box;
-        }
         }
         .filter-label {
             position: absolute;
@@ -195,6 +182,31 @@
             color: blue;
             white-space: nowrap;
         }
+        
+        /* Yeni eklenen Kapalı Boru Stilleri */
+        .solid-pipe {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            background-color: rgba(128, 128, 128, 0.2);
+            border-top: 1px solid #666;
+            border-bottom: 1px solid #666;
+            box-sizing: border-box;
+        }
+        .solid-label {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 0 5px;
+            font-size: 10px;
+            color: #333;
+            white-space: nowrap;
+            border: 1px solid #999;
+            border-radius: 2px;
+        }
+
         .pattern-options {
             display: flex;
             flex-wrap: wrap;
@@ -289,7 +301,6 @@
             </div>
         </div>
         
-        <!-- Yeni eklenen Filtreler bölümü -->
         <div class="filters-section">
             <h2>Filtre Yerleri</h2>
             <div class="form-group">
@@ -298,7 +309,6 @@
             </div>
         </div>
         
-        <!-- Katman listesi bölümü -->
         <div class="input-section">
             <div class="layer-list" id="layerList">
                 <!-- Katmanlar burada listelenecek -->
@@ -320,58 +330,57 @@
     </div>
 
     <script>
-                // Desen tanımları
+        // Desen tanımları
         const patterns = [
-  {
-    color: "rgba(139,69,19,0.4)",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"rgba(139,69,19,0.4)\"/></svg>')"
-  },
-  {
-    color: "#d3d3d3",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6\" height=\"6\"><rect width=\"6\" height=\"6\" fill=\"%23d3d3d3\"/><circle cx=\"1\" cy=\"1\" r=\"0.7\" fill=\"%23696969\"/><circle cx=\"4\" cy=\"4\" r=\"0.7\" fill=\"%23696969\"/></svg>')"
-  },
-  {
-    color: "#a0522d",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\"><path stroke=\"%23a0522d\" stroke-width=\"1\" stroke-dasharray=\"4,2\" d=\"M0 4 L12 4 M0 8 L12 8\"/><path stroke=\"%23a0522d\" stroke-width=\"1\" stroke-dasharray=\"4,2\" d=\"M2 0 L14 0 M2 12 L14 12\"/></svg>')"
-  },
-  {
-    color: "#b8860b",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"%23fffacd\"/><circle cx=\"2\" cy=\"2\" r=\"1\" fill=\"%23b8860b\"/><circle cx=\"6\" cy=\"6\" r=\"1\" fill=\"%23b8860b\"/></svg>')"
-  },
-  {
-    color: "#808080",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\"><rect width=\"10\" height=\"10\" fill=\"%23dcdcdc\"/><circle cx=\"3\" cy=\"3\" r=\"2\" fill=\"%23808080\"/><circle cx=\"7\" cy=\"7\" r=\"2\" fill=\"%23808080\"/></svg>')"
-  },
-  {
-    color: "#0000cd",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><path d=\"M0 8 L8 0\" stroke=\"%230000cd\" stroke-width=\"2\"/></svg>')"
-  },
-  {
-    color: "#ffffff",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"12\"><rect width=\"24\" height=\"12\" fill=\"%23ffffff\"/><rect x=\"0\" y=\"0\" width=\"8\" height=\"6\" fill=\"none\" stroke=\"%23000\" stroke-width=\"1\"/><rect x=\"8\" y=\"6\" width=\"8\" height=\"6\" fill=\"none\" stroke=\"%23000\" stroke-width=\"1\"/><rect x=\"16\" y=\"0\" width=\"8\" height=\"6\" fill=\"none\" stroke=\"%23000\" stroke-width=\"1\"/></svg>')"
-  },
-  {
-    color: "#4b4b4b",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><text x=\"3\" y=\"13\" font-size=\"16\" fill=\"%234b4b4b\">+</text></svg>')"
-  },
-  {
-    color: "#c71585",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><text x=\"3\" y=\"13\" font-size=\"16\" fill=\"%23c71585\">+</text></svg>')"
-  },
-  {
-    color: "#8b4513",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\"><path d=\"M8 10 L5 5 L2 10\" stroke=\"%238b4513\" stroke-width=\"2\" fill=\"none\"/></svg>')"
-  },
-  {
-    color: "rgba(0,0,0,0.3)",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"rgba(0,0,0,0.3)\"/></svg>')"
-  },
-  {
-    color: "#a0522d",
-    pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\"><path d=\"M10 0 L5 5 L0 0\" stroke=\"%23a0522d\" stroke-width=\"1\"/><circle cx=\"3\" cy=\"7\" r=\"1\" fill=\"%23a0522d\"/><circle cx=\"7\" cy=\"7\" r=\"1\" fill=\"%23a0522d\"/></svg>')"
-  }
-];
-
+            {
+                color: "rgba(139,69,19,0.4)",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"rgba(139,69,19,0.4)\"/></svg>')"
+            },
+            {
+                color: "#d3d3d3",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"6\" height=\"6\"><rect width=\"6\" height=\"6\" fill=\"%23d3d3d3\"/><circle cx=\"1\" cy=\"1\" r=\"0.7\" fill=\"%23696969\"/><circle cx=\"4\" cy=\"4\" r=\"0.7\" fill=\"%23696969\"/></svg>')"
+            },
+            {
+                color: "#a0522d",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"12\" height=\"12\"><path stroke=\"%23a0522d\" stroke-width=\"1\" stroke-dasharray=\"4,2\" d=\"M0 4 L12 4 M0 8 L12 8\"/><path stroke=\"%23a0522d\" stroke-width=\"1\" stroke-dasharray=\"4,2\" d=\"M2 0 L14 0 M2 12 L14 12\"/></svg>')"
+            },
+            {
+                color: "#b8860b",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"%23fffacd\"/><circle cx=\"2\" cy=\"2\" r=\"1\" fill=\"%23b8860b\"/><circle cx=\"6\" cy=\"6\" r=\"1\" fill=\"%23b8860b\"/></svg>')"
+            },
+            {
+                color: "#808080",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\"><rect width=\"10\" height=\"10\" fill=\"%23dcdcdc\"/><circle cx=\"3\" cy=\"3\" r=\"2\" fill=\"%23808080\"/><circle cx=\"7\" cy=\"7\" r=\"2\" fill=\"%23808080\"/></svg>')"
+            },
+            {
+                color: "#0000cd",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><path d=\"M0 8 L8 0\" stroke=\"%230000cd\" stroke-width=\"2\"/></svg>')"
+            },
+            {
+                color: "#ffffff",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"12\"><rect width=\"24\" height=\"12\" fill=\"%23ffffff\"/><rect x=\"0\" y=\"0\" width=\"8\" height=\"6\" fill=\"none\" stroke=\"%23000\" stroke-width=\"1\"/><rect x=\"8\" y=\"6\" width=\"8\" height=\"6\" fill=\"none\" stroke=\"%23000\" stroke-width=\"1\"/><rect x=\"16\" y=\"0\" width=\"8\" height=\"6\" fill=\"none\" stroke=\"%23000\" stroke-width=\"1\"/></svg>')"
+            },
+            {
+                color: "#4b4b4b",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><text x=\"3\" y=\"13\" font-size=\"16\" fill=\"%234b4b4b\">+</text></svg>')"
+            },
+            {
+                color: "#c71585",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><text x=\"3\" y=\"13\" font-size=\"16\" fill=\"%23c71585\">+</text></svg>')"
+            },
+            {
+                color: "#8b4513",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\"><path d=\"M8 10 L5 5 L2 10\" stroke=\"%238b4513\" stroke-width=\"2\" fill=\"none\"/></svg>')"
+            },
+            {
+                color: "rgba(0,0,0,0.3)",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"8\" height=\"8\"><rect width=\"8\" height=\"8\" fill=\"rgba(0,0,0,0.3)\"/></svg>')"
+            },
+            {
+                color: "#a0522d",
+                pattern: "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"10\" height=\"10\"><path d=\"M10 0 L5 5 L0 0\" stroke=\"%23a0522d\" stroke-width=\"1\"/><circle cx=\"3\" cy=\"7\" r=\"1\" fill=\"%23a0522d\"/><circle cx=\"7\" cy=\"7\" r=\"1\" fill=\"%23a0522d\"/></svg>')"
+            }
+        ];
 
         // Seçili desen ve düzenleme durumu
         let selectedPatternIndex = 0;
@@ -561,56 +570,81 @@
             
             // Ölçek faktörü (piksel/metre)
             const scaleFactor = 6;
-            const totalDepth = layers[layers.length - 1].endDepth;
-            const sectionHeight = totalDepth * scaleFactor;
+            const maxDepth = layers[layers.length - 1].endDepth;
+            const sectionHeight = maxDepth * scaleFactor;
             
             sectionPattern.style.height = `${sectionHeight}px`;
             sectionLegend.style.height = `${sectionHeight}px`;
             sectionWell.style.height = `${sectionHeight}px`;
             
-            // Filtre bölgelerini al
-            const filterDepths = parseFilterDepths();
-let currentDepth = 0; 
-
-filterDepths.forEach(f => {
-    // Filtre öncesi boşluk varsa Kapalı yaz
-    if (f > currentDepth) {
-        sectionWell.innerHTML += <div class="casing-zone" style="height:${(f - currentDepth) * scaleFactor}px; top:${currentDepth * scaleFactor}px">Kapalı<br>${currentDepth}-${f}m</div>;
-    }
-    
-    // Filtre bölgesini çiz
-    sectionWell.innerHTML += <div class="filter-zone" style="height:${4 * scaleFactor}px; top:${f * scaleFactor}px">Filtre<br>${f}-${f + 4}m</div>;
-    
-    currentDepth = f + 4;
-});
-
-// Kuyu sonuna kadar boşluk varsa Kapalı yaz
-if (currentDepth < totalDepth) {
-    sectionWell.innerHTML += <div class="casing-zone" style="height:${(totalDepth - currentDepth) * scaleFactor}px; top:${currentDepth * scaleFactor}px">Kapalı<br>${currentDepth}-${totalDepth.toFixed(1)}m</div>;
-}
+            // Filtre bölgelerini al ve filtre aralıklarını (start, end) hesapla
+            const rawFilterDepths = parseFilterDepths();
+            const filterIntervals = rawFilterDepths.map(depth => ({ start: depth, end: depth + 4 }));
             
-            // Filtreleri ve aradaki kapalı boruları çiz
-let currentDepth = 0; // Kuyu başından başla
-filters.forEach(f => {
-    // 1. Filtre öncesi boşluk varsa "Kapalı" yazdır
-    if (f > currentDepth) {
-        sectionWell.innerHTML += <div class="casing-zone" style="height:${(f-currentDepth)*scaleFactor}px; top:${currentDepth*scaleFactor}px">Kapalı<br>${currentDepth}-${f}m</div>;
-    }
-    
-    // 2. Filtre bölgesini oluştur
-   sectionWell.innerHTML += <div class="filter-zone" style="height:${4*scaleFactor}px; top:${f*scaleFactor}px">Filtre<br>${f}-${f+4}m</div>;
-    
-    // 3. Bir sonraki aşama için derinliği güncelle
-    currentDepth = f + 4;
-});
+            // Aralıkları sıraya diz ki boşlukları doğru hesaplayalım
+            filterIntervals.sort((a, b) => a.start - b.start);
+            
+            let currentWellDepth = 0;
 
-// 4. Eğer en son filtreden sonra kuyu tabanına kadar mesafe varsa orayı da "Kapalı" olarak işaretle
-if (currentDepth < totalDepth) {
-    sectionWell.innerHTML += <div class="casing-zone" style="height:${(totalDepth-currentDepth)*scaleFactor}px; top:${currentDepth*scaleFactor}px">Kapalı<br>${currentDepth}-${totalDepth.toFixed(1)}m</div>;
-}
+            // Filtre ve Kapalı Boru Bölgelerini KUYU LOGUNA çiz
+            filterIntervals.forEach(interval => {
+                // Eğer mevcut derinlik, filtrenin başladığı yerden küçükse (arada boşluk varsa), oraya kapalı boru çiz
+                if (currentWellDepth < interval.start) {
+                    const solidTop = currentWellDepth * scaleFactor;
+                    const solidHeight = (interval.start - currentWellDepth) * scaleFactor;
+                    
+                    const solidZone = document.createElement('div');
+                    solidZone.className = 'solid-pipe';
+                    solidZone.style.top = `${solidTop}px`;
+                    solidZone.style.height = `${solidHeight}px`;
+                    sectionWell.appendChild(solidZone);
+                    
+                    const solidLabel = document.createElement('div');
+                    solidLabel.className = 'solid-label';
+                    solidLabel.style.top = `${solidTop + solidHeight/2}px`;
+                    solidLabel.innerHTML = `Kapalı ${currentWellDepth}-${interval.start}m`;
+                    sectionWell.appendChild(solidLabel);
+                }
+                
+                // Filtre bölgesini çiz
+                const filterTop = interval.start * scaleFactor;
+                const filterHeight = (interval.end - interval.start) * scaleFactor;
+                
+                const filterZone = document.createElement('div');
+                filterZone.className = 'filter-zone';
+                filterZone.style.top = `${filterTop}px`;
+                filterZone.style.height = `${filterHeight}px`;
+                sectionWell.appendChild(filterZone);
+                
+                const filterLabel = document.createElement('div');
+                filterLabel.className = 'filter-label';
+                filterLabel.style.top = `${filterTop + filterHeight/2}px`;
+                filterLabel.innerHTML = `Filtre ${interval.start}-${interval.end}m`;
+                sectionWell.appendChild(filterLabel);
+                
+                // Derinliği güncelle (Çakışan filtreleri önlemek için max kullanılır)
+                currentWellDepth = Math.max(currentWellDepth, interval.end);
             });
             
-            // Katmanları çiz
+            // En sonda kalan boşluk varsa (en son filtreden kuyu dibine kadar), oraya da kapalı boru çiz
+            if (currentWellDepth < maxDepth) {
+                const solidTop = currentWellDepth * scaleFactor;
+                const solidHeight = (maxDepth - currentWellDepth) * scaleFactor;
+                
+                const solidZone = document.createElement('div');
+                solidZone.className = 'solid-pipe';
+                solidZone.style.top = `${solidTop}px`;
+                solidZone.style.height = `${solidHeight}px`;
+                sectionWell.appendChild(solidZone);
+                
+                const solidLabel = document.createElement('div');
+                solidLabel.className = 'solid-label';
+                solidLabel.style.top = `${solidTop + solidHeight/2}px`;
+                solidLabel.innerHTML = `Kapalı ${currentWellDepth}-${maxDepth}m`;
+                sectionWell.appendChild(solidLabel);
+            }
+
+            // Katmanları çiz (Lejant ve Jeolojik Kesit)
             layers.forEach((layer, index) => {
                 const layerHeight = (layer.endDepth - layer.startDepth) * scaleFactor;
                 const layerTop = layer.startDepth * scaleFactor;
@@ -656,14 +690,15 @@ if (currentDepth < totalDepth) {
         
         // Görüntüyü kaydet
         document.getElementById('saveImageBtn').onclick = function () {
-    html2canvas(document.getElementById('sectionContainer'), {
-        scale: 4 // Kaliteyi 2 kat artırır (dilerseniz 3 veya daha fazla yapabilirsiniz)
-    }).then(canvas => {
-        const link = document.createElement('a');
-        link.download = 'jeolojik-kesit-ve-filtreler.png';
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-    });
+            html2canvas(document.getElementById('sectionContainer'), {
+                scale: 4 // Kaliteyi 2 kat artırır (dilerseniz 3 veya daha fazla yapabilirsiniz)
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'jeolojik-kesit-ve-filtreler.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        };
     </script>
 <p style="text-align:center; font-size:12px;">© 2025 | Emre Mermutlu | Tüm hakları saklıdır</p>
 </body>
