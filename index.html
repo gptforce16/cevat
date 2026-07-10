@@ -156,8 +156,8 @@
                             <input type="text" id="p_location" value="Bursa / Yenişehir / Çeltikçi" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 mb-1">MEVKİİ / ADA-PARSEL</label>
-                            <input type="text" id="p_mevkii" value="Köyüstü / 104 Ada 12 Parsel" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                            <label class="block text-xs font-bold text-slate-500 mb-1">ADA / PARSEL</label>
+                            <input type="text" id="p_mevkii" value="104 Ada 12 Parsel" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                         </div>
                     </div>
 
@@ -188,30 +188,11 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-                        <div class="md:col-span-4 flex flex-col gap-3 justify-center">
-                            <p class="text-xs text-slate-500">
-                                Harita üzerindeki pini sürükleyebilir, enlem/boylam değerlerini değiştirebilir veya doğrudan <strong>UTM koordinat alanını</strong> düzenleyebilirsiniz:
-                            </p>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-600 mb-1">ENLEM (LATITUDE)</label>
-                                <input type="number" step="0.000001" id="p_lat" value="40.262500" oninput="updateMapFromInputs()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-mono focus:ring-2 focus:ring-indigo-500 outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-slate-600 mb-1">BOYLAM (LONGITUDE)</label>
-                                <input type="number" step="0.000001" id="p_lon" value="29.663100" oninput="updateMapFromInputs()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm font-mono focus:ring-2 focus:ring-indigo-500 outline-none">
-                            </div>
-                            <div class="flex gap-2">
-                                <button onclick="panToKuyu()" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 rounded-lg transition shadow-sm">
-                                    <i class="fa-solid fa-crosshairs"></i> Konuma Odaklan
-                                </button>
-                                <button onclick="convertToUtm()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-semibold px-2 py-2 rounded-lg border border-slate-300 transition" title="WGS84 koordinatlarını UTM alanına aktarır">
-                                    UTM Güncelle
-                                </button>
-                            </div>
-                        </div>
+                        <input type="hidden" id="p_lat" value="40.262500">
+                        <input type="hidden" id="p_lon" value="29.663100">
 
                         <!-- Harita Ekranı -->
-                        <div class="md:col-span-8">
+                        <div class="md:col-span-12">
                             <div id="map" class="w-full h-[240px] rounded-xl border border-slate-200 shadow-inner overflow-hidden"></div>
                             <div class="flex justify-between items-center mt-1.5 text-[10px] text-slate-500">
                                 <span>* Pin sürüklenebilir. Gerçek zamanlı uydu görüntüsü altlığı (Esri) kullanılmaktadır.</span>
@@ -227,24 +208,18 @@
                         <i class="fa-solid fa-droplet text-blue-500 text-lg"></i>
                         <h2 class="text-base font-bold text-slate-800">Pompa Deney & Akifer Verimleri</h2>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-blue-800 mb-1">KUYU VERİMİ / DEBİ (Q - lt/s)</label>
-                            <input type="number" step="0.1" id="v_debi" value="12" oninput="calculateHydraulics()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                            <input type="number" step="0.1" id="v_debi" value="12" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-blue-800 mb-1">STATİK SEVİYE (m)</label>
-                            <input type="number" step="0.1" id="v_statik" value="10" oninput="calculateHydraulics()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+                            <input type="number" step="0.1" id="v_statik" value="10" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-blue-800 mb-1">DİNAMİK SEVİYE (m)</label>
-                            <input type="number" step="0.1" id="v_dinamik" value="34" oninput="calculateHydraulics()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-                        </div>
-                        <div class="bg-blue-50 p-3 rounded-lg border border-blue-100 flex flex-col justify-center">
-                            <span class="text-[10px] font-bold text-blue-500 tracking-wider">HİDROLİK HESAP</span>
-                            <div class="text-xs font-bold text-slate-700 mt-1" id="hydraulics_calc">
-                                Düşüm: 24.0 m
-                            </div>
+                            <input type="number" step="0.1" id="v_dinamik" value="34" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
                         </div>
                     </div>
                 </div>
@@ -293,10 +268,6 @@
                                         <label class="block text-xs font-bold text-slate-500 mb-1">ALT SINIR (m)</label>
                                         <input type="number" id="litEndD" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm outline-none">
                                     </div>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-500 mb-1">AÇIKLAMA / RENK / SERTLİK</label>
-                                    <input type="text" id="litDesc" placeholder="Örn: Sarımsı gri, gevşek dokulu" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm outline-none">
                                 </div>
                             </div>
                         </div>
@@ -373,7 +344,7 @@
                                     <thead>
                                         <tr class="bg-slate-100 border-b border-slate-200 sticky top-0">
                                             <th class="p-2 font-bold text-slate-600">Derinlik (m)</th>
-                                            <th class="p-2 font-bold text-slate-600">Litoloji / Açıklama</th>
+                                            <th class="p-2 font-bold text-slate-600">Litoloji</th>
                                             <th class="p-2 font-bold text-slate-600 text-center">İşlem</th>
                                         </tr>
                                     </thead>
@@ -437,7 +408,7 @@
                             <i class="fa-solid fa-circle-info text-blue-500"></i> Grafik Okuma Kılavuzu:
                         </p>
                         <p><strong>Sol Sütun:</strong> Standart taranmış jeoloji formasyon kesiti.</p>
-                        <p><strong>Sağ Sütun:</strong> Borulama, muhafaza ve mavi/turuncu filtreler.</p>
+                        <p><strong>Sağ Sütun:</strong> Gri kapalı borular (4m dilimli) ve mavi filtreli teçhiz dizilimi.</p>
                         <p><strong>Üst Metrikler:</strong> Delgi ve boru çapı şemaya basılmıştır.</p>
                     </div>
                 </div>
@@ -818,27 +789,10 @@
             };
         }
 
-        function calculateHydraulics() {
-            const statik = parseFloat(document.getElementById('v_statik').value) || 0;
-            const dinamik = parseFloat(document.getElementById('v_dinamik').value) || 0;
-
-            const calcDiv = document.getElementById('hydraulics_calc');
-            
-            if (dinamik > statik && statik >= 0) {
-                const dusum = (dinamik - statik).toFixed(1);
-                calcDiv.innerHTML = `
-                    Düşüm: <strong class="text-blue-700">${dusum} m</strong>
-                `;
-            } else {
-                calcDiv.innerHTML = `<span class="text-rose-500 font-semibold">Dinamik > Statik olmalıdır!</span>`;
-            }
-        }
-
         function addLithologyLayer() {
             const type = document.getElementById('litType').value;
             const start = parseFloat(document.getElementById('litStartD').value);
             const end = parseFloat(document.getElementById('litEndD').value);
-            const desc = document.getElementById('litDesc').value || "";
 
             const totalDepth = parseFloat(document.getElementById('p_derinlik').value) || 100;
 
@@ -857,7 +811,7 @@
                 return;
             }
 
-            lithologies.push({ type, start, end, thick: end - start, desc });
+            lithologies.push({ type, start, end, thick: end - start });
             lithologies.sort((a, b) => a.start - b.start);
 
             updateLitoTable();
@@ -865,7 +819,6 @@
 
             document.getElementById('litStartD').value = end;
             document.getElementById('litEndD').value = "";
-            document.getElementById('litDesc').value = "";
             showToast("Jeolojik katman eklendi.", "success");
         }
 
@@ -981,7 +934,6 @@
                     <td class="p-2 text-slate-600">
                         <span class="inline-block w-2.5 h-2.5 rounded-full mr-1" style="background-color: ${litColors[l.type] || '#ccc'}"></span>
                         <strong class="text-slate-800">${l.type}</strong> 
-                        <span class="text-[10px] text-slate-400 block">${l.desc}</span>
                     </td>
                     <td class="p-2 text-center">
                         <button onclick="deleteLito(${index})" class="text-rose-500 hover:text-rose-700"><i class="fa-solid fa-trash-can"></i></button>
@@ -1037,7 +989,7 @@
             document.getElementById('firm_engineer').value = "Kemal Alkan (Jeoloji Yüksek Mühendisi)";
             document.getElementById('p_client').value = "Yıldız Tekstil Sanayi Ltd. Şti.";
             document.getElementById('p_location').value = "Bursa / Yenişehir / Çeltikçi";
-            document.getElementById('p_mevkii').value = "Köyüstü / 104 Ada 12 Parsel";
+            document.getElementById('p_mevkii').value = "104 Ada 12 Parsel";
             document.getElementById('p_derinlik').value = "90";
             document.getElementById('p_amaci').value = "Kullanım ve Proses Suyu";
 
@@ -1050,20 +1002,19 @@
             document.getElementById('v_dinamik').value = "48";
 
             lithologies = [
-                { type: 'Bitkisel Toprak', start: 0, end: 3, thick: 3, desc: 'Yüzey örtüsü' },
-                { type: 'Alüvyon', start: 3, end: 12, thick: 9, desc: 'Kum, silt ve çakıl karışımı' },
-                { type: 'Kil', start: 12, end: 24, thick: 12, desc: 'Mavi-gri renkli kil' },
-                { type: 'Killi Kum', start: 24, end: 36, thick: 12, desc: 'Siltli killi orta kum' },
-                { type: 'Kum', start: 36, end: 48, thick: 12, desc: 'Temiz akifer kumu' },
-                { type: 'Kumtaşı', start: 48, end: 60, thick: 12, desc: 'Gözenekli kumtaşları' },
-                { type: 'Çakıl', start: 60, end: 72, thick: 12, desc: 'Kuvarsit iri çakıllar' },
-                { type: 'Kireçtaşı', start: 72, end: 90, thick: 18, desc: 'Gri kireçtaşları' }
+                { type: 'Bitkisel Toprak', start: 0, end: 3, thick: 3 },
+                { type: 'Alüvyon', start: 3, end: 12, thick: 9 },
+                { type: 'Kil', start: 12, end: 24, thick: 12 },
+                { type: 'Killi Kum', start: 24, end: 36, thick: 12 },
+                { type: 'Kum', start: 36, end: 48, thick: 12 },
+                { type: 'Kumtaşı', start: 48, end: 60, thick: 12 },
+                { type: 'Çakıl', start: 60, end: 72, thick: 12 },
+                { type: 'Kireçtaşı', start: 72, end: 90, thick: 18 }
             ];
 
             document.getElementById('filterDepthsInput').value = "36, 44, 60, 68";
 
             autoGenerateBoringDesign();
-            calculateHydraulics();
             showToast("Hazır firma şablon verileri yüklendi.", "success");
         }
 
@@ -1291,28 +1242,80 @@
                 const h = t.thick * scale;
 
                 if (t.type === 'Kapalı') {
-                    ctx.fillStyle = '#1d4ed8'; 
-                    ctx.fillRect(pipeLeft, y, 6, h);
-                    ctx.fillRect(pipeLeft + pipeWidth - 6, y, 6, h);
+                    let currentChunkStart = t.start;
+                    while (currentChunkStart < t.end) {
+                        let currentChunkEnd = Math.min(currentChunkStart + 4, t.end);
+                        currentChunkEnd = parseFloat(currentChunkEnd.toFixed(2));
+                        
+                        let chunkY = padding + (currentChunkStart * scale);
+                        let chunkH = (currentChunkEnd - currentChunkStart) * scale;
 
-                    ctx.fillStyle = '#eff6ff'; 
-                    ctx.fillRect(pipeLeft + 6, y, pipeWidth - 12, h);
+                        // Kapalı Boru Arkaplan
+                        ctx.fillStyle = 'rgba(128, 128, 128, 0.2)';
+                        ctx.fillRect(pipeLeft, chunkY, pipeWidth, chunkH);
+
+                        // Kenarlıklar (Alt-Üst ve Sağ-Sol Çizgileri)
+                        ctx.strokeStyle = '#666666';
+                        ctx.lineWidth = 1;
+                        ctx.setLineDash([]);
+                        ctx.beginPath();
+                        ctx.rect(pipeLeft, chunkY, pipeWidth, chunkH);
+                        ctx.stroke();
+
+                        // Etiket Kutusu ve Yazısı
+                        let text = `Kapalı ${currentChunkStart}-${currentChunkEnd}`;
+                        ctx.font = '8px sans-serif';
+                        let textW = ctx.measureText(text).width + 4;
+                        let textH = 10;
+                        let labelX = pipeLeft + (pipeWidth / 2) - (textW / 2);
+                        let labelY = chunkY + (chunkH / 2) - (textH / 2);
+
+                        // Dar alanlarda yazının taşmasını önlemek için kontrol
+                        if (chunkH >= 11) {
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fillRect(labelX, labelY, textW, textH);
+                            ctx.strokeStyle = '#999999';
+                            ctx.strokeRect(labelX, labelY, textW, textH);
+
+                            ctx.fillStyle = '#333333';
+                            ctx.textAlign = 'center';
+                            ctx.textBaseline = 'middle';
+                            ctx.fillText(text, pipeLeft + (pipeWidth / 2), chunkY + (chunkH / 2));
+                        }
+
+                        currentChunkStart = currentChunkEnd;
+                    }
                 } 
                 else if (t.type === 'Filtreli') {
-                    ctx.fillStyle = '#ea580c'; 
-                    ctx.fillRect(pipeLeft, y, 6, h);
-                    ctx.fillRect(pipeLeft + pipeWidth - 6, y, 6, h);
+                    // Filtre Arkaplan
+                    ctx.fillStyle = 'rgba(0, 0, 255, 0.1)';
+                    ctx.fillRect(pipeLeft, y, pipeWidth, h);
 
-                    ctx.fillStyle = '#fff7ed';
-                    ctx.fillRect(pipeLeft + 6, y, pipeWidth - 12, h);
+                    // Kenarlıklar (Kesik Çizgili)
+                    ctx.strokeStyle = '#0000ff';
+                    ctx.lineWidth = 1;
+                    ctx.setLineDash([3, 3]);
+                    ctx.beginPath();
+                    ctx.rect(pipeLeft, y, pipeWidth, h);
+                    ctx.stroke();
+                    ctx.setLineDash([]); // Reset
 
-                    ctx.strokeStyle = '#0f172a';
-                    ctx.lineWidth = 1.2;
-                    for (let py = y + 4; py < y + h; py += 8) {
-                        ctx.beginPath();
-                        ctx.moveTo(pipeLeft, py); ctx.lineTo(pipeLeft + 6, py);
-                        ctx.moveTo(pipeLeft + pipeWidth - 6, py); ctx.lineTo(pipeLeft + pipeWidth, py);
-                        ctx.stroke();
+                    // Etiket Kutusu ve Yazısı
+                    let text = `Filtre ${t.start}-${t.end}`;
+                    ctx.font = '8px sans-serif';
+                    let textW = ctx.measureText(text).width + 4;
+                    let textH = 10;
+                    let labelX = pipeLeft + (pipeWidth / 2) - (textW / 2);
+                    let labelY = y + (h / 2) - (textH / 2);
+
+                    if (h >= 11) {
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fillRect(labelX, labelY, textW, textH);
+
+                        ctx.fillStyle = '#0000ff';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(text, pipeLeft + (pipeWidth / 2), y + (h / 2));
                     }
                 }
             });
@@ -1476,7 +1479,7 @@
                     <td class="border border-slate-400 p-1 text-center font-mono font-bold">${l.start} - ${l.end} m</td>
                     <td class="border border-slate-400 p-1 text-[8.5px] truncate max-w-[150px]">
                         <span class="inline-block w-1.5 h-1.5 rounded-full mr-1" style="background-color: ${litColors[l.type] || '#ccc'}"></span>
-                        <strong>${l.type}</strong> - <span class="text-slate-600">${l.desc || 'Açıklama yok'}</span>
+                        <strong>${l.type}</strong>
                     </td>
                 </tr>
             `).join('');
@@ -1510,7 +1513,6 @@
 
         window.onload = function() {
             initMap();
-            calculateHydraulics();
             drawCanvasLog();
             convertToUtm();
         }
