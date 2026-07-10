@@ -177,13 +177,13 @@
             top: 50%;
             transform: translate(-50%, -50%);
             background-color: white;
-            padding: 0 5px;
-            font-size: 10px;
+            padding: 0 2px;
+            font-size: 9px;
             color: blue;
             white-space: nowrap;
         }
         
-        /* Yeni eklenen Kapalı Boru Stilleri */
+        /* Kapalı Boru Stilleri */
         .solid-pipe {
             position: absolute;
             left: 0;
@@ -199,8 +199,8 @@
             top: 50%;
             transform: translate(-50%, -50%);
             background-color: white;
-            padding: 0 5px;
-            font-size: 10px;
+            padding: 0 2px;
+            font-size: 9px;
             color: #333;
             white-space: nowrap;
             border: 1px solid #999;
@@ -581,29 +581,43 @@
             const rawFilterDepths = parseFilterDepths();
             const filterIntervals = rawFilterDepths.map(depth => ({ start: depth, end: depth + 4 }));
             
-            // Aralıkları sıraya diz ki boşlukları doğru hesaplayalım
+            // Aralıkları sıraya diz
             filterIntervals.sort((a, b) => a.start - b.start);
             
             let currentWellDepth = 0;
 
-            // Filtre ve Kapalı Boru Bölgelerini KUYU LOGUNA çiz
-            filterIntervals.forEach(interval => {
-                // Eğer mevcut derinlik, filtrenin başladığı yerden küçükse (arada boşluk varsa), oraya kapalı boru çiz
-                if (currentWellDepth < interval.start) {
-                    const solidTop = currentWellDepth * scaleFactor;
-                    const solidHeight = (interval.start - currentWellDepth) * scaleFactor;
+            // Kapalı boruları 4'er metrelik dilimler halinde çizecek yardımcı fonksiyon
+            function drawSolidPipesInChunks(startDepth, endDepth) {
+                let currentChunkStart = startDepth;
+                while (currentChunkStart < endDepth) {
+                    // Maksimum 4 metrelik bir parça hesapla, sınır dışına çıkmasını engelle
+                    let currentChunkEnd = parseFloat((Math.min(currentChunkStart + 4, endDepth)).toFixed(2));
+                    
+                    const chunkTop = currentChunkStart * scaleFactor;
+                    const chunkHeight = (currentChunkEnd - currentChunkStart) * scaleFactor;
                     
                     const solidZone = document.createElement('div');
                     solidZone.className = 'solid-pipe';
-                    solidZone.style.top = `${solidTop}px`;
-                    solidZone.style.height = `${solidHeight}px`;
+                    solidZone.style.top = `${chunkTop}px`;
+                    solidZone.style.height = `${chunkHeight}px`;
                     sectionWell.appendChild(solidZone);
                     
                     const solidLabel = document.createElement('div');
                     solidLabel.className = 'solid-label';
-                    solidLabel.style.top = `${solidTop + solidHeight/2}px`;
-                    solidLabel.innerHTML = `Kapalı ${currentWellDepth}-${interval.start}m`;
+                    solidLabel.style.top = `${chunkTop + chunkHeight/2}px`;
+                    solidLabel.innerHTML = `Kapalı ${currentChunkStart}-${currentChunkEnd}`;
                     sectionWell.appendChild(solidLabel);
+                    
+                    currentChunkStart = currentChunkEnd;
+                }
+            }
+
+            // Filtre ve Kapalı Boru Bölgelerini KUYU LOGUNA çiz
+            filterIntervals.forEach(interval => {
+                // Eğer mevcut derinlik, filtrenin başladığı yerden küçükse (arada boşluk varsa) 
+                // kapalı boruları 4'er metre parçalayarak çiz
+                if (currentWellDepth < interval.start) {
+                    drawSolidPipesInChunks(currentWellDepth, interval.start);
                 }
                 
                 // Filtre bölgesini çiz
@@ -619,29 +633,16 @@
                 const filterLabel = document.createElement('div');
                 filterLabel.className = 'filter-label';
                 filterLabel.style.top = `${filterTop + filterHeight/2}px`;
-                filterLabel.innerHTML = `Filtre ${interval.start}-${interval.end}m`;
+                filterLabel.innerHTML = `Filtre ${interval.start}-${interval.end}`;
                 sectionWell.appendChild(filterLabel);
                 
-                // Derinliği güncelle (Çakışan filtreleri önlemek için max kullanılır)
+                // Derinliği güncelle
                 currentWellDepth = Math.max(currentWellDepth, interval.end);
             });
             
-            // En sonda kalan boşluk varsa (en son filtreden kuyu dibine kadar), oraya da kapalı boru çiz
+            // En sonda kalan boşluk varsa 4'er metre dilimleyerek oraya da kapalı boru çiz
             if (currentWellDepth < maxDepth) {
-                const solidTop = currentWellDepth * scaleFactor;
-                const solidHeight = (maxDepth - currentWellDepth) * scaleFactor;
-                
-                const solidZone = document.createElement('div');
-                solidZone.className = 'solid-pipe';
-                solidZone.style.top = `${solidTop}px`;
-                solidZone.style.height = `${solidHeight}px`;
-                sectionWell.appendChild(solidZone);
-                
-                const solidLabel = document.createElement('div');
-                solidLabel.className = 'solid-label';
-                solidLabel.style.top = `${solidTop + solidHeight/2}px`;
-                solidLabel.innerHTML = `Kapalı ${currentWellDepth}-${maxDepth}m`;
-                sectionWell.appendChild(solidLabel);
+                drawSolidPipesInChunks(currentWellDepth, maxDepth);
             }
 
             // Katmanları çiz (Lejant ve Jeolojik Kesit)
