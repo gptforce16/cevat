@@ -561,7 +561,8 @@
             
             // Ölçek faktörü (piksel/metre)
             const scaleFactor = 6;
-            const sectionHeight = layers[layers.length - 1].endDepth * scaleFactor;
+            const totalDepth = layers[layers.length - 1].endDepth;
+            const sectionHeight = totalDepth * scaleFactor;
             
             sectionPattern.style.height = `${sectionHeight}px`;
             sectionLegend.style.height = `${sectionHeight}px`;
@@ -569,17 +570,35 @@
             
             // Filtre bölgelerini al
             const filterDepths = parseFilterDepths();
+let currentDepth = 0; 
+
+filterDepths.forEach(f => {
+    // Filtre öncesi boşluk varsa Kapalı yaz
+    if (f > currentDepth) {
+        sectionWell.innerHTML += <div class="casing-zone" style="height:${(f - currentDepth) * scaleFactor}px; top:${currentDepth * scaleFactor}px">Kapalı<br>${currentDepth}-${f}m</div>;
+    }
+    
+    // Filtre bölgesini çiz
+    sectionWell.innerHTML += <div class="filter-zone" style="height:${4 * scaleFactor}px; top:${f * scaleFactor}px">Filtre<br>${f}-${f + 4}m</div>;
+    
+    currentDepth = f + 4;
+});
+
+// Kuyu sonuna kadar boşluk varsa Kapalı yaz
+if (currentDepth < totalDepth) {
+    sectionWell.innerHTML += <div class="casing-zone" style="height:${(totalDepth - currentDepth) * scaleFactor}px; top:${currentDepth * scaleFactor}px">Kapalı<br>${currentDepth}-${totalDepth.toFixed(1)}m</div>;
+}
             
             // Filtreleri ve aradaki kapalı boruları çiz
 let currentDepth = 0; // Kuyu başından başla
 filters.forEach(f => {
     // 1. Filtre öncesi boşluk varsa "Kapalı" yazdır
     if (f > currentDepth) {
-        well.innerHTML += <div class="casing-zone" style="height:${(f-currentDepth)*scale}px; top:${currentDepth*scale}px">Kapalı<br>${currentDepth}-${f}m</div>;
+        sectionWell.innerHTML += <div class="casing-zone" style="height:${(f-currentDepth)*scaleFactor}px; top:${currentDepth*scaleFactor}px">Kapalı<br>${currentDepth}-${f}m</div>;
     }
     
     // 2. Filtre bölgesini oluştur
-    well.innerHTML += <div class="filter-zone" style="height:${4*scale}px; top:${f*scale}px">Filtre<br>${f}-${f+4}m</div>;
+   sectionWell.innerHTML += <div class="filter-zone" style="height:${4*scaleFactor}px; top:${f*scaleFactor}px">Filtre<br>${f}-${f+4}m</div>;
     
     // 3. Bir sonraki aşama için derinliği güncelle
     currentDepth = f + 4;
@@ -587,7 +606,7 @@ filters.forEach(f => {
 
 // 4. Eğer en son filtreden sonra kuyu tabanına kadar mesafe varsa orayı da "Kapalı" olarak işaretle
 if (currentDepth < totalDepth) {
-    well.innerHTML += <div class="casing-zone" style="height:${(totalDepth-currentDepth)*scale}px; top:${currentDepth*scale}px">Kapalı<br>${currentDepth}-${totalDepth.toFixed(1)}m</div>;
+    sectionWell.innerHTML += <div class="casing-zone" style="height:${(totalDepth-currentDepth)*scaleFactor}px; top:${currentDepth*scaleFactor}px">Kapalı<br>${currentDepth}-${totalDepth.toFixed(1)}m</div>;
 }
             });
             
@@ -645,7 +664,6 @@ if (currentDepth < totalDepth) {
         link.href = canvas.toDataURL('image/png');
         link.click();
     });
-};
     </script>
 <p style="text-align:center; font-size:12px;">© 2025 | Emre Mermutlu | Tüm hakları saklıdır</p>
 </body>
