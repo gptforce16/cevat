@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profesyonel Kuyu Sondaj Logu ve Teçhiz Editörü</title>
+<title>GeoLog Pro - Kuyu Logu Editörü</title>
 
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -79,7 +79,7 @@ box-sizing: border-box;
 page-break-after: avoid;
 page-break-before: avoid;
 background: #ffffff;
-color: #000000; /* Çıktıda her şey net siyah olmalı */
+color: #000000;
 }
 }
 </style>
@@ -283,7 +283,6 @@ color: #000000; /* Çıktıda her şey net siyah olmalı */
 <label class="block text-xs font-bold text-slate-500 mb-1">LİTOLOJİ TÜRÜ</label>
 <select id="litType" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 <option value="Bitkisel Toprak">Bitkisel Toprak</option>
-<option value="Turba">Turba</option>
 <option value="Alüvyon">Alüvyon</option>
 <option value="Kil">Kil</option>
 <option value="Silt">Silt</option>
@@ -309,15 +308,14 @@ color: #000000; /* Çıktıda her şey net siyah olmalı */
 <option value="Dolomit">Dolomit</option>
 <option value="Traverten">Traverten</option>
 <option value="Alçıtaşı (Jips)">Alçıtaşı (Jips)</option>
-<option value="Kaya Tuzu">Kaya Tuzu</option>
 <option value="Tüf">Tüf</option>
-<option value="İgnimbrit">İgnimbrit</option>
 <option value="Aglomera">Aglomera</option>
+<option value="Volkanit">Volkanit</option>
+<option value="Metavolkanit">Metavolkanit</option>
 <option value="Bazalt">Bazalt</option>
 <option value="Andezit">Andezit</option>
 <option value="Riyolit">Riyolit</option>
 <option value="Trakit">Trakit</option>
-<option value="Spilit">Spilit</option>
 <option value="Granit">Granit</option>
 <option value="Siyenit">Siyenit</option>
 <option value="Diyorit">Diyorit</option>
@@ -478,43 +476,43 @@ color: #000000; /* Çıktıda her şey net siyah olmalı */
 <tbody class="divide-y divide-black">
 <tr>
 <td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Firma Adı</td>
-<td class="p-1.5 text-black font-semibold" id="pdf_firm_name_td">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_firm_name_td">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Sorumlu Mühendis</td>
-<td class="p-1.5 text-black" id="pdf_responsible_eng">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_responsible_eng">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Kuyu Sahibi</td>
-<td class="p-1.5 text-black" id="pdf_client_val">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_client_val">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Kullanım Amacı</td>
-<td class="p-1.5 text-black" id="pdf_kuyu_amaci">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_kuyu_amaci">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Adres</td>
-<td class="p-1.5 text-black" id="pdf_location_val">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_location_val">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Ada / Parsel</td>
-<td class="p-1.5 text-black" id="pdf_mevkii_val">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_mevkii_val">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Koordinat (ED50_6)</td>
-<td class="p-1.5 font-mono text-black" id="pdf_utm_val">-</td>
+<td class="p-1.5 font-mono text-black font-normal" id="pdf_utm_val">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Kuyu Derinliği</td>
-<td class="p-1.5 text-black font-bold" id="pdf_depth_val">0 m</td>
+<td class="p-1.5 text-black font-normal" id="pdf_depth_val">0 m</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Teçhiz ve Delgi Çapı</td>
-<td class="p-1.5 text-black" id="pdf_pipe_spec_val">-</td>
+<td class="p-1.5 text-black font-normal" id="pdf_pipe_spec_val">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Tarihi</td>
-<td class="p-1.5 font-mono text-black" id="pdf_tarih_val">-</td>
+<td class="p-1.5 font-mono text-black font-normal" id="pdf_tarih_val">-</td>
 </tr>
 </tbody>
 </table>
@@ -529,19 +527,19 @@ color: #000000; /* Çıktıda her şey net siyah olmalı */
 <tbody class="divide-y divide-black">
 <tr>
 <td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Kuyu Verimi</td>
-<td class="p-1.5 font-mono text-black font-bold" id="pdf_hyd_debi">-</td>
+<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_debi">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Statik Seviye (S.S.S)</td>
-<td class="p-1.5 font-mono text-black" id="pdf_hyd_statik">-</td>
+<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_statik">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Dinamik Seviye (D.S.S)</td>
-<td class="p-1.5 font-mono text-black" id="pdf_hyd_dinamik">-</td>
+<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_dinamik">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Pompa Çalışma Süresi</td>
-<td class="p-1.5 font-mono text-black" id="pdf_hyd_sure">-</td>
+<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_sure">-</td>
 </tr>
 </tbody>
 </table>
@@ -710,6 +708,20 @@ function setProjectData(data) {
     return true;
 }
 
+function getFormattedFileName() {
+    const ilce = document.getElementById('p_ilce').value.trim();
+    const mahalle = document.getElementById('p_mahalle').value.trim();
+    const ada = document.getElementById('p_ada').value.trim();
+    const parsel = document.getElementById('p_parsel').value.trim();
+    
+    const parts = [ilce, mahalle, ada, parsel].filter(p => p !== '');
+    
+    if (parts.length > 0) {
+        return parts.join('_').replace(/\s+/g, '_');
+    }
+    return "Kuyu_Logu";
+}
+
 function downloadProject() {
     const data = getProjectData();
     const jsonStr = JSON.stringify(data, null, 2);
@@ -719,15 +731,8 @@ function downloadProject() {
     const a = document.createElement('a');
     a.href = url;
     
-    let fileName = "kuyu_projesi";
-    const ilce = document.getElementById('p_ilce').value.trim();
-    const mahalle = document.getElementById('p_mahalle').value.trim();
-    const musteri = document.getElementById('p_client').value.trim();
+    a.download = getFormattedFileName() + ".geolog";
     
-    if(musteri) fileName = musteri.replace(/\s+/g, '_');
-    else if(ilce || mahalle) fileName = `${ilce}_${mahalle}_kuyu`;
-    
-    a.download = fileName + ".geolog";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -1082,7 +1087,6 @@ tCtx.lineWidth = 1;
 
 switch(type) {
 case 'Bitkisel Toprak':
-case 'Turba':
     tCtx.beginPath();
     // Bitki kökleri / çimen sembolleri
     tCtx.moveTo(5, 10); tCtx.lineTo(5, 5); tCtx.lineTo(3, 3);
@@ -1266,7 +1270,6 @@ case 'Marn':
     break;
 
 case 'Tüf':
-case 'İgnimbrit':
     tCtx.beginPath();
     tCtx.moveTo(4, 4); tCtx.lineTo(7, 9); tCtx.lineTo(10, 4);
     tCtx.moveTo(14, 14); tCtx.lineTo(17, 19); tCtx.lineTo(20, 14);
@@ -1285,12 +1288,12 @@ case 'Aglomera':
     tCtx.fillRect(10, 10, 2, 2);
     break;
 
-case 'Bazalt / Andezit':
 case 'Bazalt':
 case 'Andezit':
 case 'Riyolit':
 case 'Trakit':
-case 'Spilit':
+case 'Volkanit':
+case 'Metavolkanit':
     // Karmaşık açılı "V" harfleri
     tCtx.beginPath();
     tCtx.moveTo(3, 4); tCtx.lineTo(6, 8); tCtx.lineTo(9, 4);
@@ -1350,8 +1353,6 @@ case 'Gnays':
     break;
 
 case 'Mermer':
-case 'Alçıtaşı (Jips)':
-case 'Kaya Tuzu':
     // Kırıklı çapraz iri blok yapısı
     tCtx.beginPath();
     tCtx.moveTo(0, 20); tCtx.lineTo(20, 0);
@@ -1486,7 +1487,7 @@ ctx.fillStyle = '#000000';
 for(let py = y + 4; py < y + h; py += 10) {
 ctx.beginPath();
 ctx.arc(techLeft + 9, py, 1.5, 0, Math.PI*2);
-ctx.arc(techLeft + techWidth - 9, py + 4, 1.5, 0, Math.PI*2);
+ctx.arc(techLeft + techWidth - 9, py, 1.5, 0, Math.PI*2); // Sol ve sağ hizalandı (+4 kaldırıldı)
 ctx.fill();
 }
 }
@@ -1594,8 +1595,6 @@ lithologies.forEach(l => { depthLines.add(l.start); depthLines.add(l.end); });
 
 Array.from(depthLines).sort((a,b) => a-b).forEach(d => {
 const y = padding + (d * scale);
-
-// Sadece metreler yazacak (yatay çizgiler kaldırıldı)
 ctx.fillStyle = '#000000';
 ctx.fillText(d + 'm', 38, y);
 });
@@ -1766,17 +1765,7 @@ pdfMapImg.src = mapBase64;
 
 setTimeout(() => {
 const originalTitle = document.title;
-const ilce = document.getElementById('p_ilce').value.trim();
-const mahalle = document.getElementById('p_mahalle').value.trim();
-const ada = document.getElementById('p_ada').value.trim();
-const parsel = document.getElementById('p_parsel').value.trim();
-
-const fileNameParts = [ilce, mahalle, ada, parsel].filter(p => p !== '');
-if (fileNameParts.length > 0) {
-document.title = fileNameParts.join('').replace(/\s+/g, '');
-} else {
-document.title = 'Kuyu_Logu';
-}
+document.title = getFormattedFileName();
 
 window.print();
 document.title = originalTitle;
