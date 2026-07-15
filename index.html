@@ -79,7 +79,7 @@ box-sizing: border-box;
 page-break-after: avoid;
 page-break-before: avoid;
 background: #ffffff;
-color: #1e293b;
+color: #000000; /* Çıktıda her şey net siyah olmalı */
 }
 }
 </style>
@@ -90,25 +90,20 @@ color: #1e293b;
 <header class="bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-md py-4 px-6 mb-6">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
 <div class="flex items-center gap-3">
-<div class="bg-gradient-to-br from-cyan-600 to-blue-700 p-2 rounded-lg shadow-md text-white flex items-center justify-center">
+<div class="bg-gradient-to-br from-slate-700 to-slate-900 p-2 rounded-lg shadow-md text-white flex items-center justify-center border border-slate-600">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-7 h-7">
-<!-- Sondaj Borusu -->
 <path d="M12 2v13" />
-<!-- Sondaj Matkabı (Uç) -->
 <path d="M9 15h6l-3 5-3-5z" fill="currentColor"/>
-<!-- 1. Katman (Yüzey) -->
 <path d="M3 9h18" />
-<!-- 2. Katman -->
 <path d="M4 14h4" />
 <path d="M16 14h4" />
-<!-- 3. Katman -->
 <path d="M5 19h3" />
 <path d="M16 19h3" />
 </svg>
 </div>
 <div>
 <h1 class="text-xl md:text-2xl font-bold tracking-tight">GeoLog Pro</h1>
-<p class="text-xs text-blue-300">Kuyu Logu Editörü</p>
+<p class="text-xs text-slate-400">Kuyu Logu Editörü</p>
 </div>
 </div>
 <!-- Kontrol Butonları -->
@@ -123,16 +118,6 @@ color: #1e293b;
         </button>
         <button onclick="downloadProject()" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-1.5 rounded font-semibold text-xs transition flex items-center gap-1.5" title="Kuyuyu Bilgisayara İndir">
             <i class="fa-solid fa-download"></i> İndir
-        </button>
-    </div>
-
-    <!-- LocalStorage İşlemleri -->
-    <div class="flex bg-teal-800/30 rounded-lg p-1 gap-1">
-        <button onclick="saveToLocal()" class="bg-teal-600 hover:bg-teal-500 text-white px-3 py-1.5 rounded font-semibold text-xs transition flex items-center gap-1.5" title="Tarayıcı Hafızasına Kaydet">
-            <i class="fa-solid fa-cloud-arrow-up"></i> Tarayıcıya Kaydet
-        </button>
-        <button onclick="loadFromLocal()" class="bg-teal-600 hover:bg-teal-500 text-white px-3 py-1.5 rounded font-semibold text-xs transition flex items-center gap-1.5" title="Tarayıcıdan Geri Yükle">
-            <i class="fa-solid fa-cloud-arrow-down"></i>
         </button>
     </div>
 
@@ -158,75 +143,75 @@ color: #1e293b;
 <!-- Firma ve Lokasyon Kartı -->
 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
 <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
-<i class="fa-solid fa-building text-blue-600 text-lg"></i>
+<i class="fa-solid fa-building text-slate-600 text-lg"></i>
 <h2 class="text-base font-bold text-slate-800">Kuyu Künyesi</h2>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
 <div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">FİRMA ADI</label>
-<input type="text" id="firm_name" value="" placeholder="Örn: Yeryüzü Jeoteknik A.Ş." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="firm_name" value="" placeholder="Örn: Yeryüzü Jeoteknik A.Ş." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">SORUMLU MÜHENDİS</label>
-<input type="text" id="firm_engineer" value="" placeholder="Ad Soyad" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="firm_engineer" value="" placeholder="Ad Soyad" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">KUYU SAHİBİ</label>
-<input type="text" id="p_client" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_client" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">İL</label>
-<input type="text" id="p_il" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_il" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">İLÇE</label>
-<input type="text" id="p_ilce" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_ilce" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">MAHALLE</label>
-<input type="text" id="p_mahalle" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_mahalle" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
 <div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">ADA</label>
-<input type="text" id="p_ada" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_ada" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">PARSEL</label>
-<input type="text" id="p_parsel" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_parsel" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div class="md:col-span-3">
 <label class="block text-xs font-bold text-slate-500 mb-1">TARİHİ</label>
-<input type="date" id="p_tarih" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="date" id="p_tarih" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">DERİNLİK (m)</label>
-<input type="number" id="p_derinlik" value="" placeholder="Örn: 160" oninput="drawCanvasLog()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="number" id="p_derinlik" value="" placeholder="Örn: 160" oninput="drawCanvasLog()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div class="md:col-span-3">
 <label class="block text-xs font-bold text-slate-500 mb-1">KUYU AMACI</label>
-<input type="text" id="p_amaci" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="text" id="p_amaci" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">UTM DİLİMİ (ZONE)</label>
-<input type="number" id="p_zone" value="" oninput="updateMapFromUtm()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="number" id="p_zone" value="" oninput="updateMapFromUtm()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">SAĞA DEĞER (DOĞU / Y)</label>
-<input type="number" id="p_easting" value="" oninput="updateMapFromUtm()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="number" id="p_easting" value="" oninput="updateMapFromUtm()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">YUKARI DEĞER (KUZEY / X)</label>
-<input type="number" id="p_northing" value="" oninput="updateMapFromUtm()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<input type="number" id="p_northing" value="" oninput="updateMapFromUtm()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
 </div>
@@ -235,10 +220,10 @@ color: #1e293b;
 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
 <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
 <div class="flex items-center gap-2">
-<i class="fa-solid fa-map-location-dot text-indigo-600 text-lg"></i>
-<h2 class="text-base font-bold text-slate-800">Kuyu Lokasyon Krokisi</h2>
+<i class="fa-solid fa-map-location-dot text-slate-600 text-lg"></i>
+<h2 class="text-base font-bold text-slate-800">Kuyu Yeri Krokisi</h2>
 </div>
-<span class="text-xs bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full font-bold">Uydu Görüntüsü</span>
+<span class="text-xs bg-slate-100 text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full font-bold">Uydu Görüntüsü</span>
 </div>
 
 <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
@@ -247,10 +232,10 @@ color: #1e293b;
 
 <!-- Harita Ekranı -->
 <div class="md:col-span-12">
-<div id="map" class="w-full h-[240px] rounded-xl border border-slate-200 shadow-inner overflow-hidden"></div>
+<div id="map" class="w-full h-[240px] rounded-xl border border-slate-300 shadow-inner overflow-hidden"></div>
 <div class="flex justify-between items-center mt-1.5 text-[10px] text-slate-500">
 <span>* Pin sürüklenebilir. Gerçek zamanlı uydu görüntüsü altlığı (Esri) kullanılmaktadır.</span>
-<span class="font-bold text-indigo-600 cursor-pointer hover:underline" onclick="toggleMapLayer()">Harita Stilini Değiştir</span>
+<span class="font-bold text-slate-600 cursor-pointer hover:underline" onclick="toggleMapLayer()">Harita Stilini Değiştir</span>
 </div>
 </div>
 </div>
@@ -259,25 +244,25 @@ color: #1e293b;
 <!-- Hidrolik Ölçüm Verileri -->
 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
 <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
-<i class="fa-solid fa-droplet text-blue-500 text-lg"></i>
+<i class="fa-solid fa-droplet text-slate-600 text-lg"></i>
 <h2 class="text-base font-bold text-slate-800">Pompa Deney Verileri</h2>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 <div>
-<label class="block text-xs font-bold text-blue-800 mb-1">KUYU VERİMİ / DEBİ (Q - lt/s)</label>
-<input type="number" step="0.1" id="v_debi" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<label class="block text-xs font-bold text-slate-600 mb-1">KUYU VERİMİ / DEBİ (Q - lt/sn)</label>
+<input type="number" step="0.1" id="v_debi" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
-<label class="block text-xs font-bold text-blue-800 mb-1">STATİK SEVİYE (m)</label>
-<input type="number" step="0.1" id="v_statik" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<label class="block text-xs font-bold text-slate-600 mb-1">STATİK SEVİYE (m)</label>
+<input type="number" step="0.1" id="v_statik" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
-<label class="block text-xs font-bold text-blue-800 mb-1">DİNAMİK SEVİYE (m)</label>
-<input type="number" step="0.1" id="v_dinamik" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<label class="block text-xs font-bold text-slate-600 mb-1">DİNAMİK SEVİYE (m)</label>
+<input type="number" step="0.1" id="v_dinamik" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
-<label class="block text-xs font-bold text-blue-800 mb-1">ÇALIŞMA SÜRESİ (Saat)</label>
-<input type="number" step="1" id="v_sure" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<label class="block text-xs font-bold text-slate-600 mb-1">ÇALIŞMA SÜRESİ (Saat)</label>
+<input type="number" step="1" id="v_sure" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
 </div>
@@ -289,33 +274,62 @@ color: #1e293b;
 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
 <div>
 <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
-<i class="fa-solid fa-layer-group text-amber-500 text-lg"></i>
+<i class="fa-solid fa-layer-group text-slate-600 text-lg"></i>
 <h2 class="text-base font-bold text-slate-800">Jeoloji Litolojisi Ekle</h2>
 </div>
 
 <div class="space-y-3">
 <div>
 <label class="block text-xs font-bold text-slate-500 mb-1">LİTOLOJİ TÜRÜ</label>
-<select id="litType" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+<select id="litType" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 <option value="Bitkisel Toprak">Bitkisel Toprak</option>
+<option value="Turba">Turba</option>
 <option value="Alüvyon">Alüvyon</option>
 <option value="Kil">Kil</option>
 <option value="Silt">Silt</option>
+<option value="Kumlu Silt">Kumlu Silt</option>
+<option value="Siltli Kum">Siltli Kum</option>
+<option value="İnce Kum">İnce Kum</option>
 <option value="Kum">Kum</option>
+<option value="İri Kum">İri Kum</option>
+<option value="İnce Çakıl">İnce Çakıl</option>
 <option value="Çakıl">Çakıl</option>
+<option value="İri Çakıl">İri Çakıl</option>
 <option value="Killi Kum">Killi Kum</option>
 <option value="Kumlu Çakıl">Kumlu Çakıl</option>
 <option value="Killi Kumlu Çakıl">Killi Kumlu Çakıl</option>
-<option value="Çamurtaşı">Çamurtaşı</option>
+<option value="Konglomera">Konglomera</option>
+<option value="Breş">Breş</option>
 <option value="Kumtaşı">Kumtaşı</option>
-<option value="Çakıltaşı">Çakıltaşı</option>
+<option value="Silttaşı">Silttaşı</option>
+<option value="Kiltaşı">Kiltaşı</option>
+<option value="Çamurtaşı">Çamurtaşı</option>
+<option value="Marn">Marn</option>
 <option value="Kireçtaşı">Kireçtaşı</option>
-<option value="Mermer">Mermer</option>
-<option value="Şist">Şist</option>
-<option value="Volkanit">Volkanit</option>
-<option value="Metavolkanit">Metavolkanit</option>
+<option value="Dolomit">Dolomit</option>
+<option value="Traverten">Traverten</option>
+<option value="Alçıtaşı (Jips)">Alçıtaşı (Jips)</option>
+<option value="Kaya Tuzu">Kaya Tuzu</option>
+<option value="Tüf">Tüf</option>
+<option value="İgnimbrit">İgnimbrit</option>
+<option value="Aglomera">Aglomera</option>
+<option value="Bazalt">Bazalt</option>
+<option value="Andezit">Andezit</option>
+<option value="Riyolit">Riyolit</option>
+<option value="Trakit">Trakit</option>
+<option value="Spilit">Spilit</option>
 <option value="Granit">Granit</option>
+<option value="Siyenit">Siyenit</option>
+<option value="Diyorit">Diyorit</option>
+<option value="Gabro">Gabro</option>
+<option value="Peridotit">Peridotit</option>
+<option value="Pegmatit">Pegmatit</option>
+<option value="Şist">Şist</option>
+<option value="Gnays">Gnays</option>
+<option value="Mermer">Mermer</option>
+<option value="Kuvarsit">Kuvarsit</option>
 <option value="Serpantinit">Serpantinit</option>
+<option value="Amfibolit">Amfibolit</option>
 </select>
 </div>
 <div class="grid grid-cols-2 gap-2">
@@ -331,7 +345,7 @@ color: #1e293b;
 </div>
 </div>
 
-<button onclick="addLithologyLayer()" class="mt-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow">
+<button onclick="addLithologyLayer()" class="mt-4 bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow">
 <i class="fa-solid fa-plus"></i> Litoloji Katmanı Ekle
 </button>
 </div>
@@ -340,28 +354,28 @@ color: #1e293b;
 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
 <div>
 <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-4">
-<i class="fa-solid fa-toolbox text-emerald-500 text-lg"></i>
+<i class="fa-solid fa-toolbox text-slate-600 text-lg"></i>
 <h2 class="text-base font-bold text-slate-800">Filtre Tasarımı</h2>
 </div>
 
 <div class="space-y-4">
 <div>
 <label class="block text-xs font-bold text-slate-700 mb-1">FİLTRE BAŞLANGIÇ METRELERİ (Virgülle Ayırın)</label>
-<input type="text" id="filterDepthsInput" value="" oninput="autoGenerateBoringDesign()" class="w-full bg-emerald-50 border border-emerald-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-emerald-500 font-mono outline-none" placeholder="Örn: 30,52,74">
+<input type="text" id="filterDepthsInput" value="" oninput="autoGenerateBoringDesign()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-slate-500 font-mono outline-none" placeholder="Örn: 30,52,74">
 <p class="text-[10px] text-slate-500 mt-1 italic">
 * Belirttiğiniz her metreye otomatik 4 metre filtre (örn: 36 -> 36-40 m) yerleştirilir. Kuyu grafiğinde otomatik güncellenir.
 </p>
 </div>
 
-<div class="p-3 bg-slate-50 rounded-lg border border-slate-150">
-<label class="block text-xs font-bold text-slate-500 mb-1">BORU VE DELGİ PARAMETRELERİ</label>
+<div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+<label class="block text-xs font-bold text-slate-600 mb-1">BORU VE DELGİ PARAMETRELERİ</label>
 <div class="grid grid-cols-2 gap-2 mt-1">
 <div>
-<span class="text-[9px] font-bold text-slate-400 block">BORU TÜRÜ/ÇAPI</span>
+<span class="text-[9px] font-bold text-slate-500 block">BORU TÜRÜ/ÇAPI</span>
 <input type="text" id="tech_pipe_spec" value="" placeholder="Örn: 200 mm PVC" oninput="autoGenerateBoringDesign()" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs">
 </div>
 <div>
-<span class="text-[9px] font-bold text-slate-400 block">SONDAJ DELGİ ÇAPI</span>
+<span class="text-[9px] font-bold text-slate-500 block">SONDAJ DELGİ ÇAPI</span>
 <input type="text" id="tech_hole_spec" value="" placeholder='Örn: 12 1/4"' oninput="drawCanvasLog()" class="w-full bg-white border border-slate-300 rounded px-2 py-1 text-xs">
 </div>
 </div>
@@ -385,16 +399,16 @@ color: #1e293b;
 
 <!-- Litoloji Cetveli -->
 <div>
-<h4 class="text-xs font-bold text-amber-600 mb-2 flex items-center gap-1">
+<h4 class="text-xs font-bold text-slate-600 mb-2 flex items-center gap-1">
 <i class="fa-solid fa-cubes"></i> Eklenen Jeolojik Katmanlar
 </h4>
-<div class="overflow-y-auto max-h-[220px] border border-slate-150 rounded-lg">
+<div class="overflow-y-auto max-h-[220px] border border-slate-200 rounded-lg bg-white">
 <table class="w-full text-left text-xs border-collapse" id="litoTable">
 <thead>
-<tr class="bg-slate-100 border-b border-slate-200 sticky top-0">
-<th class="p-2 font-bold text-slate-600">Derinlik (m)</th>
-<th class="p-2 font-bold text-slate-600">Litoloji</th>
-<th class="p-2 font-bold text-slate-600 text-center">İşlem</th>
+<tr class="bg-slate-100 border-b border-slate-300 sticky top-0">
+<th class="p-2 font-bold text-slate-700">Derinlik (m)</th>
+<th class="p-2 font-bold text-slate-700">Litoloji Formasyonu</th>
+<th class="p-2 font-bold text-slate-700 text-center">İşlem</th>
 </tr>
 </thead>
 <tbody class="divide-y divide-slate-100" id="litoTableBody">
@@ -416,16 +430,16 @@ color: #1e293b;
 <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sticky top-4 flex flex-col justify-between">
 <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
 <div class="flex items-center gap-2">
-<i class="fa-solid fa-pencil-ruler text-blue-600"></i>
+<i class="fa-solid fa-pencil-ruler text-slate-600"></i>
 <h3 class="font-bold text-sm text-slate-800">Grafik Kuyu Şeması</h3>
 </div>
-<span id="canvasDepthIndicator" class="text-xs bg-slate-100 text-slate-700 font-mono font-bold px-2 py-0.5 rounded">0 m</span>
+<span id="canvasDepthIndicator" class="text-xs bg-slate-100 text-slate-700 font-mono font-bold border border-slate-200 px-2 py-0.5 rounded">0 m</span>
 </div>
 
 <!-- Çizim Tahtası (BEYAZ ARKA PLAN) -->
 <div class="flex justify-center bg-slate-100 rounded-xl p-3 shadow-inner border border-slate-200">
 <div class="relative w-full max-h-[580px] overflow-y-auto flex justify-center">
-<canvas id="logCanvas" class="bg-white rounded border border-slate-300"></canvas>
+<canvas id="logCanvas" class="bg-white rounded border border-slate-400 shadow-sm"></canvas>
 </div>
 </div>
 </div>
@@ -435,7 +449,7 @@ color: #1e293b;
 
 <!-- Yazdır / Çıktı Butonları Bölümü -->
 <div class="mt-6 flex justify-center w-full">
-<button onclick="prepareAndPrint()" class="bg-gradient-to-r from-blue-700 to-indigo-800 hover:from-blue-600 hover:to-indigo-700 text-white font-bold text-lg py-4 px-12 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3 w-full md:w-auto">
+<button onclick="prepareAndPrint()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold text-lg py-4 px-12 rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3 w-full md:w-auto border border-slate-700">
 <i class="fa-solid fa-print text-2xl"></i>
 <span>KAYDET (PDF OLUŞTUR)</span>
 </button>
@@ -464,7 +478,7 @@ color: #1e293b;
 <tbody class="divide-y divide-black">
 <tr>
 <td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Firma Adı</td>
-<td class="p-1.5 text-black" id="pdf_firm_name_td">-</td>
+<td class="p-1.5 text-black font-semibold" id="pdf_firm_name_td">-</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Sorumlu Mühendis</td>
@@ -492,7 +506,7 @@ color: #1e293b;
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Kuyu Derinliği</td>
-<td class="p-1.5 text-black" id="pdf_depth_val">0 m</td>
+<td class="p-1.5 text-black font-bold" id="pdf_depth_val">0 m</td>
 </tr>
 <tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Teçhiz ve Delgi Çapı</td>
@@ -514,19 +528,19 @@ color: #1e293b;
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-semibold w-[35%] border-r border-black">Kuyu Verimi</td>
-<td class="p-1.5 font-mono text-black" id="pdf_hyd_debi">-</td>
+<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Kuyu Verimi</td>
+<td class="p-1.5 font-mono text-black font-bold" id="pdf_hyd_debi">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-semibold border-r border-black">Statik Seviye (S.S.S)</td>
+<td class="text-black p-1.5 font-bold border-r border-black">Statik Seviye (S.S.S)</td>
 <td class="p-1.5 font-mono text-black" id="pdf_hyd_statik">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-semibold border-r border-black">Dinamik Seviye (D.S.S)</td>
+<td class="text-black p-1.5 font-bold border-r border-black">Dinamik Seviye (D.S.S)</td>
 <td class="p-1.5 font-mono text-black" id="pdf_hyd_dinamik">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-semibold border-r border-black">Pompa Çalışma Süresi</td>
+<td class="text-black p-1.5 font-bold border-r border-black">Pompa Çalışma Süresi</td>
 <td class="p-1.5 font-mono text-black" id="pdf_hyd_sure">-</td>
 </tr>
 </tbody>
@@ -536,81 +550,70 @@ color: #1e293b;
 
 <!-- Krokiler: Kuyu Başı & Lokasyon (Altlı Üstlü) -->
 <div class="mb-2 flex flex-col gap-2 flex-1">
-<!-- Kuyubaşı Şeması -->
+<!-- Kuyubaşı Şeması (B&W Standard) -->
 <div>
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Kuyubaşı Şeması</h2>
 <div class="border border-black rounded flex flex-col h-[135px] bg-white items-center justify-center overflow-hidden">
 <svg viewBox="0 10 300 235" class="w-full h-full">
 <defs>
 <pattern id="gravelPattern" width="15" height="15" patternUnits="userSpaceOnUse">
-<rect width="15" height="15" fill="#f8f9fa"/>
-<path d="M2,2 Q3,1 4,2 Q5,3 4,4 Q3,5 2,4 Z" fill="#666"/>
-<path d="M10,8 Q12,7 13,9 Q11,11 10,10 Z" fill="#999"/>
-<circle cx="8" cy="3" r="1" fill="#444"/>
-<circle cx="3" cy="12" r="1.5" fill="#777"/>
-<circle cx="13" cy="14" r="1" fill="#333"/>
+<rect width="15" height="15" fill="#ffffff"/>
+<path d="M2,2 Q3,1 4,2 Q5,3 4,4 Q3,5 2,4 Z" fill="#000" stroke="#000" stroke-width="0.5"/>
+<path d="M10,8 Q12,7 13,9 Q11,11 10,10 Z" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="8" cy="3" r="1" fill="#000"/>
+<circle cx="3" cy="12" r="1.5" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="13" cy="14" r="1" fill="#000"/>
 </pattern>
 <pattern id="concretePattern" width="8" height="8" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
-<rect width="8" height="8" fill="#e2e8f0"/>
-<line x1="0" y1="0" x2="0" y2="8" stroke="#94a3b8" stroke-width="1.5"/>
+<rect width="8" height="8" fill="#ffffff"/>
+<line x1="0" y1="0" x2="0" y2="8" stroke="#000" stroke-width="1"/>
 </pattern>
-<marker id="redArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-<path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444"/>
-</marker>
-<marker id="blueArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-<path d="M 0 1 L 10 5 L 0 9 z" fill="#3b82f6"/>
-</marker>
 <marker id="blackArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-<path d="M 0 1 L 10 5 L 0 9 z" fill="#1e293b"/>
+<path d="M 0 1 L 10 5 L 0 9 z" fill="#000"/>
 </marker>
-<linearGradient id="casingGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-<stop offset="0%" stop-color="#f1f5f9"/>
-<stop offset="50%" stop-color="#e2e8f0"/>
-<stop offset="100%" stop-color="#cbd5e1"/>
-</linearGradient>
 </defs>
 
 <!-- Ground Surface -->
 <line x1="10" y1="75" x2="290" y2="75" stroke="#000" stroke-width="3"/>
 
 <!-- Concrete Base -->
-<rect x="40" y="55" width="220" height="20" fill="url(#concretePattern)" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="40" y="55" width="220" height="20" fill="url(#concretePattern)" stroke="#000" stroke-width="1.5"/>
 <!-- Concrete Column -->
-<rect x="90" y="75" width="120" height="40" fill="url(#concretePattern)" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="90" y="75" width="120" height="40" fill="url(#concretePattern)" stroke="#000" stroke-width="1.5"/>
 
 <!-- Gravel Column -->
-<rect x="90" y="115" width="120" height="115" fill="url(#gravelPattern)" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="90" y="115" width="120" height="115" fill="url(#gravelPattern)" stroke="#000" stroke-width="1.5"/>
 
 <!-- Casing Main Body -->
-<rect x="110" y="45" width="80" height="185" fill="url(#casingGrad)" stroke="#1e293b" stroke-width="1.5"/>
-<ellipse cx="150" cy="45" rx="40" ry="12" fill="#f8fafc" stroke="#1e293b" stroke-width="1.5"/>
-<ellipse cx="150" cy="230" rx="40" ry="12" fill="#cbd5e1" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="110" y="45" width="80" height="185" fill="#ffffff" stroke="#000" stroke-width="2"/>
+<ellipse cx="150" cy="45" rx="40" ry="12" fill="#ffffff" stroke="#000" stroke-width="2"/>
+<ellipse cx="150" cy="230" rx="40" ry="12" fill="#ffffff" stroke="#000" stroke-width="2"/>
 
 <!-- Gravel Pipe -->
-<rect x="194" y="15" width="12" height="110" fill="url(#gravelPattern)" stroke="#1e293b" stroke-width="1.5"/>
-<ellipse cx="200" cy="15" rx="6" ry="2.5" fill="#fff" stroke="#1e293b" stroke-width="1.5"/>
+<rect x="194" y="15" width="12" height="110" fill="url(#gravelPattern)" stroke="#000" stroke-width="1.5"/>
+<ellipse cx="200" cy="15" rx="6" ry="2.5" fill="#ffffff" stroke="#000" stroke-width="1.5"/>
 
 <!-- Annotations -->
-<text x="75" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="16" fill="#1e293b" text-anchor="middle">Beton</text>
-<line x1="75" y1="35" x2="95" y2="65" stroke="#1e293b" stroke-width="2" marker-end="url(#blackArrow)"/>
+<text x="75" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="16" fill="#000" text-anchor="middle">Beton</text>
+<line x1="75" y1="35" x2="95" y2="65" stroke="#000" stroke-width="2" marker-end="url(#blackArrow)"/>
 
-<text x="260" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="16" fill="#1e293b" text-anchor="middle">Çakıl Borusu</text>
-<line x1="250" y1="35" x2="208" y2="50" stroke="#1e293b" stroke-width="2" marker-end="url(#blackArrow)"/>
+<text x="260" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="16" fill="#000" text-anchor="middle">Çakıl Borusu</text>
+<line x1="250" y1="35" x2="208" y2="50" stroke="#000" stroke-width="2" marker-end="url(#blackArrow)"/>
 
-<line x1="112" y1="95" x2="188" y2="95" stroke="#ef4444" stroke-width="2" marker-start="url(#redArrow)" marker-end="url(#redArrow)"/>
-<text id="svg_pipe_spec" x="150" y="90" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#000" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="3">225mm</text>
+<line x1="112" y1="95" x2="188" y2="95" stroke="#000" stroke-width="2" marker-start="url(#blackArrow)" marker-end="url(#blackArrow)"/>
+<text id="svg_pipe_spec" x="150" y="90" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#000" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="4">225mm</text>
 
-<line x1="92" y1="165" x2="208" y2="165" stroke="#3b82f6" stroke-width="2" marker-start="url(#blueArrow)" marker-end="url(#blueArrow)"/>
-<text id="svg_hole_spec" x="150" y="160" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#000" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="3">15"</text>
+<line x1="92" y1="165" x2="208" y2="165" stroke="#000" stroke-width="2" marker-start="url(#blackArrow)" marker-end="url(#blackArrow)"/>
+<text id="svg_hole_spec" x="150" y="160" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#000" text-anchor="middle" paint-order="stroke" stroke="#fff" stroke-width="4">15"</text>
 </svg>
 </div>
 </div>
 
 <!-- Harita Resmi -->
 <div class="flex flex-col flex-1">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Kuyu Lokasyon Krokisi</h2>
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Kuyu Yeri Krokisi</h2>
 <div class="border border-black rounded p-1 flex flex-col flex-1 min-h-[180px]">
-<div id="pdf_map_image_container" class="w-full h-full bg-white flex items-center justify-center relative overflow-hidden rounded border border-black/30">
+<div id="pdf_map_image_container" class="w-full h-full bg-white flex items-center justify-center relative overflow-hidden rounded border border-black">
 <img id="pdf_map_static_img" class="absolute inset-0 w-full h-full object-cover" src="" alt="Konum Krokisi">
 </div>
 </div>
@@ -629,7 +632,7 @@ color: #1e293b;
 </div>
 </div>
 <!-- Karekod (Sadece Konum) -->
-<div class="w-[80px] flex flex-col items-center justify-center border-l border-black/50 pl-2 shrink-0">
+<div class="w-[80px] flex flex-col items-center justify-center border-l border-black pl-2 shrink-0">
 <canvas id="qr_map_canvas" class="w-[65px] h-[65px]"></canvas>
 <span class="text-[8px] text-black font-bold mt-1 text-center leading-tight">Konuma Git</span>
 </div>
@@ -649,7 +652,7 @@ color: #1e293b;
 
 <!-- Bildirim Balonu -->
 <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none z-50">
-<span id="toastIcon"><i class="fa-solid fa-info-circle text-blue-400"></i></span>
+<span id="toastIcon"><i class="fa-solid fa-info-circle text-slate-300"></i></span>
 <span id="toastMessage" class="text-sm font-semibold">İşlem başarılı</span>
 </div>
 
@@ -672,29 +675,7 @@ attribution: '© OpenStreetMap',
 crossOrigin: 'anonymous'
 });
 
-const litColors = {
-'Bitkisel Toprak': '#86efac',
-'Alüvyon': '#fed7aa',
-'Kil': '#fca5a5',
-'Silt': '#d8b4fe',
-'Kum': '#fef08a',
-'Çakıl': '#fdba74',
-'Killi Kum': '#fde047',
-'Kumlu Çakıl': '#f97316',
-'Killi Kumlu Çakıl': '#ea580c',
-'Çamurtaşı': '#b45309',
-'Kumtaşı': '#ca8a04',
-'Çakıltaşı': '#ea580c',
-'Kireçtaşı': '#93c5fd',
-'Mermer': '#e2e8f0',
-'Şist': '#a5b4fc',
-'Volkanit': '#f472b6',
-'Metavolkanit': '#ec4899',
-'Granit': '#cbd5e1',
-'Serpantinit': '#0d9488'
-};
-
-// --- KAYDET / YÜKLE SİSTEMİ (JSON & LOCALSTORAGE) ---
+// --- KAYDET / YÜKLE SİSTEMİ (SADECE DOSYA) ---
 const inputIdsToSave = [
     'firm_name', 'firm_engineer', 'p_client', 'p_il', 'p_ilce', 'p_mahalle', 
     'p_ada', 'p_parsel', 'p_tarih', 'p_derinlik', 'p_amaci', 'p_zone', 
@@ -713,16 +694,13 @@ function getProjectData() {
 function setProjectData(data) {
     if(!data || !data.inputs) return false;
     
-    // Tüm inputları doldur
     for (const [id, value] of Object.entries(data.inputs)) {
         const el = document.getElementById(id);
         if(el) el.value = value;
     }
     
-    // Litolojiyi geri yükle
     lithologies = data.lithologies || [];
     
-    // Arayüzü ve haritayı güncelle
     updateLitoTable();
     autoGenerateBoringDesign();
     
@@ -732,7 +710,6 @@ function setProjectData(data) {
     return true;
 }
 
-// 1. Bilgisayara İndir (.geolog formatında JSON)
 function downloadProject() {
     const data = getProjectData();
     const jsonStr = JSON.stringify(data, null, 2);
@@ -759,7 +736,6 @@ function downloadProject() {
     showToast("Kuyu projesi bilgisayara kaydedildi.", "success");
 }
 
-// 2. Bilgisayardan Yükle
 function handleFileUpload(event) {
     const file = event.target.files[0];
     if (!file) return;
@@ -776,35 +752,10 @@ function handleFileUpload(event) {
         } catch (err) {
             showToast("Dosya okuma hatası!", "error");
         }
-        event.target.value = ""; // Inputu sıfırla ki aynı dosyayı tekrar seçebilsin
+        event.target.value = ""; 
     };
     reader.readAsText(file);
 }
-
-// 3. Tarayıcı Hafızasına Kaydet (Local Storage)
-function saveToLocal() {
-    const data = getProjectData();
-    localStorage.setItem('geologpro_save', JSON.stringify(data));
-    showToast("Proje tarayıcı hafızasına güvenle kaydedildi.", "success");
-}
-
-// 4. Tarayıcı Hafızasından Yükle (Local Storage)
-function loadFromLocal() {
-    const jsonStr = localStorage.getItem('geologpro_save');
-    if (jsonStr) {
-        try {
-            const data = JSON.parse(jsonStr);
-            if(setProjectData(data)) {
-                showToast("En son kaydedilen proje tarayıcıdan yüklendi.", "success");
-            }
-        } catch (err) {
-            showToast("Kayıtlı veri okunamadı!", "error");
-        }
-    } else {
-        showToast("Tarayıcıda kayıtlı bir proje bulunamadı.", "info");
-    }
-}
-// ----------------------------------------------------
 
 // Bildirim Yardımcısı
 function showToast(message, type = 'info') {
@@ -815,14 +766,14 @@ const msgSpan = document.getElementById('toastMessage');
 msgSpan.innerText = message;
 
 if(type === 'success') {
-iconSpan.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>';
-toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 border-l-4 border-emerald-500";
+iconSpan.innerHTML = '<i class="fa-solid fa-circle-check text-green-400 text-lg"></i>';
+toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 border-l-4 border-green-500";
 } else if(type === 'error') {
 iconSpan.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-rose-400 text-lg"></i>';
 toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 border-l-4 border-rose-500";
 } else {
 iconSpan.innerHTML = '<i class="fa-solid fa-circle-info text-blue-400 text-lg"></i>';
-toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 border-l-4 border-blue-500";
+toast.className = "fixed bottom-5 right-5 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-0 opacity-100 transition-all duration-300 z-50 border-l-4 border-slate-500";
 }
 
 setTimeout(() => {
@@ -1038,14 +989,14 @@ if (lithologies.length === 0) {
 tbody.innerHTML = `<tr><td colspan="3" class="p-3 text-center text-slate-400 italic">Litoloji tablosu boş.</td></tr>`;
 return;
 }
-tbody.innerHTML = lithologies.map((l, index) => `<tr class="hover:bg-slate-50 transition">
-<td class="p-2 text-slate-700 font-mono">${l.start} - ${l.end}m</td>
+tbody.innerHTML = lithologies.map((l, index) => `<tr class="hover:bg-slate-50 transition border-b border-slate-100">
+<td class="p-2 text-slate-700 font-mono text-xs">${l.start} - ${l.end}m</td>
 <td class="p-2">
-<span class="inline-block w-3 h-3 rounded-sm mr-1 border border-slate-300" style="background-color: ${litColors[l.type] || '#ccc'}"></span>
-<strong class="text-slate-800">${l.type}</strong>
+<i class="fa-solid fa-layer-group text-slate-400 mr-1.5 text-[10px]"></i>
+<strong class="text-slate-800 text-xs">${l.type}</strong>
 </td>
 <td class="p-2 text-center">
-<button onclick="deleteLito(${index})" class="text-rose-500 hover:text-rose-700"><i class="fa-solid fa-trash-can"></i></button>
+<button onclick="deleteLito(${index})" class="text-rose-500 hover:text-rose-700" title="Sil"><i class="fa-solid fa-xmark"></i></button>
 </td>
 </tr>`).join('');
 }
@@ -1100,7 +1051,7 @@ lithologies = [
 { type: 'Killi Kum', start: 30, end: 50, thick: 20 },
 { type: 'Kum', start: 50, end: 75, thick: 25 },
 { type: 'Kumtaşı', start: 75, end: 100, thick: 25 },
-{ type: 'Çakıl', start: 100, end: 130, thick: 30 },
+{ type: 'Konglomera', start: 100, end: 130, thick: 30 },
 { type: 'Kireçtaşı', start: 130, end: 160, thick: 30 }
 ];
 
@@ -1113,140 +1064,323 @@ autoGenerateBoringDesign();
 showToast("160m hazır firma şablon verileri yüklendi.", "success");
 }
 
-function createHatchPattern(ctx, type, color) {
+// --- STANDART SİYAH BEYAZ JEOLOJİK TARAMALAR ---
+function createHatchPattern(ctx, type) {
 const tempCanvas = document.createElement('canvas');
 const tCtx = tempCanvas.getContext('2d');
-tempCanvas.width = 18;
-tempCanvas.height = 18;
+// 20x20 tiling box for cleaner repeating patterns
+tempCanvas.width = 20;
+tempCanvas.height = 20;
 
-tCtx.fillStyle = color;
-tCtx.fillRect(0, 0, 18, 18);
+// Arka plan tamamen beyaz (PDF standardı)
+tCtx.fillStyle = '#ffffff';
+tCtx.fillRect(0, 0, 20, 20);
 
-tCtx.strokeStyle = 'rgba(15, 23, 42, 0.7)';
-tCtx.lineWidth = 1.2;
+tCtx.strokeStyle = '#000000';
+tCtx.fillStyle = '#000000';
+tCtx.lineWidth = 1;
 
 switch(type) {
 case 'Bitkisel Toprak':
-tCtx.beginPath();
-tCtx.moveTo(4, 4); tCtx.lineTo(4, 9);
-tCtx.moveTo(2, 6); tCtx.lineTo(4, 4);
-tCtx.moveTo(6, 6); tCtx.lineTo(4, 4);
-tCtx.moveTo(13, 10); tCtx.lineTo(13, 15);
-tCtx.stroke();
-break;
+case 'Turba':
+    tCtx.beginPath();
+    // Bitki kökleri / çimen sembolleri
+    tCtx.moveTo(5, 10); tCtx.lineTo(5, 5); tCtx.lineTo(3, 3);
+    tCtx.moveTo(5, 5); tCtx.lineTo(7, 3);
+    tCtx.moveTo(15, 18); tCtx.lineTo(15, 13); tCtx.lineTo(13, 11);
+    tCtx.moveTo(15, 13); tCtx.lineTo(17, 11);
+    tCtx.stroke();
+    break;
+
 case 'Alüvyon':
-tCtx.fillStyle = 'rgba(15, 23, 42, 0.8)';
-tCtx.fillRect(2, 2, 2, 2);
-tCtx.fillRect(10, 12, 2, 2);
-tCtx.beginPath();
-tCtx.arc(6, 10, 2.5, 0, 2 * Math.PI);
-tCtx.stroke();
-break;
+    tCtx.beginPath();
+    tCtx.arc(5, 5, 2, 0, 2*Math.PI);
+    tCtx.arc(15, 15, 2.5, 0, 2*Math.PI);
+    tCtx.stroke();
+    tCtx.fillRect(10, 5, 1.5, 1.5);
+    tCtx.fillRect(4, 15, 1.5, 1.5);
+    tCtx.beginPath(); tCtx.moveTo(10, 10); tCtx.lineTo(13, 10); tCtx.stroke();
+    break;
+
 case 'Kil':
-tCtx.beginPath();
-tCtx.moveTo(0, 4); tCtx.lineTo(18, 4);
-tCtx.moveTo(0, 10); tCtx.lineTo(18, 10);
-tCtx.stroke();
-break;
+    // Yatay kesikli çizgiler
+    tCtx.beginPath();
+    tCtx.setLineDash([5, 3]);
+    tCtx.moveTo(0, 5); tCtx.lineTo(20, 5);
+    tCtx.moveTo(0, 15); tCtx.lineTo(20, 15);
+    tCtx.stroke();
+    tCtx.setLineDash([]);
+    break;
+
 case 'Silt':
-tCtx.beginPath();
-tCtx.moveTo(0, 4); tCtx.lineTo(5, 4);
-tCtx.moveTo(2, 10); tCtx.lineTo(7, 10);
-tCtx.stroke();
-break;
+case 'Kumlu Silt':
+    // Noktalı yatay çizgiler (sık kesikli)
+    tCtx.beginPath();
+    tCtx.setLineDash([2, 3]);
+    tCtx.moveTo(0, 5); tCtx.lineTo(20, 5);
+    tCtx.moveTo(0, 15); tCtx.lineTo(20, 15);
+    tCtx.stroke();
+    tCtx.setLineDash([]);
+    break;
+
 case 'Kum':
-tCtx.fillStyle = 'rgba(15, 23, 42, 0.8)';
-tCtx.fillRect(2, 2, 1.5, 1.5);
-tCtx.fillRect(10, 4, 1.5, 1.5);
-tCtx.fillRect(5, 10, 1.5, 1.5);
-tCtx.fillRect(14, 12, 1.5, 1.5);
-break;
+case 'İnce Kum':
+case 'İri Kum':
+case 'Siltli Kum':
+    // Düzensiz noktalar
+    const dots = [[3,3], [12,4], [7,9], [17,8], [4,16], [14,15], [9,19]];
+    dots.forEach(d => tCtx.fillRect(d[0], d[1], 1.2, 1.2));
+    break;
+
 case 'Çakıl':
-tCtx.beginPath();
-tCtx.arc(5, 5, 4, 0, 2 * Math.PI);
-tCtx.arc(13, 12, 4, 0, 2 * Math.PI);
-tCtx.stroke();
-break;
+case 'İnce Çakıl':
+case 'İri Çakıl':
+    // Sadece çemberler
+    tCtx.beginPath();
+    tCtx.arc(6, 6, 3, 0, 2*Math.PI);
+    tCtx.arc(15, 14, 4, 0, 2*Math.PI);
+    tCtx.stroke();
+    break;
+
 case 'Killi Kum':
-tCtx.beginPath();
-tCtx.moveTo(0, 9); tCtx.lineTo(18, 9);
-tCtx.stroke();
-tCtx.fillStyle = 'rgba(15, 23, 42, 0.8)';
-tCtx.fillRect(3, 3, 2, 2);
-break;
+    tCtx.beginPath();
+    tCtx.setLineDash([5, 3]);
+    tCtx.moveTo(0, 10); tCtx.lineTo(20, 10);
+    tCtx.stroke();
+    tCtx.setLineDash([]);
+    tCtx.fillRect(4, 4, 1.5, 1.5);
+    tCtx.fillRect(16, 16, 1.5, 1.5);
+    break;
+
 case 'Kumlu Çakıl':
-tCtx.beginPath();
-tCtx.arc(9, 9, 5, 0, 2 * Math.PI);
-tCtx.stroke();
-tCtx.fillStyle = 'rgba(15, 23, 42, 0.8)';
-tCtx.fillRect(3, 3, 2, 2);
-break;
+    tCtx.beginPath();
+    tCtx.arc(8, 8, 4, 0, 2*Math.PI);
+    tCtx.stroke();
+    tCtx.fillRect(16, 4, 1.5, 1.5);
+    tCtx.fillRect(4, 16, 1.5, 1.5);
+    break;
+
 case 'Killi Kumlu Çakıl':
-tCtx.beginPath();
-tCtx.moveTo(0, 15); tCtx.lineTo(18, 15); 
-tCtx.arc(9, 7, 4, 0, 2 * Math.PI); 
-tCtx.stroke();
-tCtx.fillStyle = 'rgba(15, 23, 42, 0.8)';
-tCtx.fillRect(2, 2, 1.5, 1.5); 
-tCtx.fillRect(14, 10, 1.5, 1.5); 
-break;
-case 'Çamurtaşı':
-tCtx.beginPath();
-tCtx.moveTo(0, 6); tCtx.lineTo(18, 6);
-tCtx.moveTo(9, 0); tCtx.lineTo(9, 6);
-tCtx.stroke();
-break;
+    tCtx.beginPath();
+    tCtx.setLineDash([4, 2]);
+    tCtx.moveTo(0, 18); tCtx.lineTo(20, 18);
+    tCtx.stroke();
+    tCtx.setLineDash([]);
+    tCtx.beginPath();
+    tCtx.arc(10, 8, 4, 0, 2*Math.PI);
+    tCtx.stroke();
+    tCtx.fillRect(3, 3, 1.5, 1.5);
+    tCtx.fillRect(17, 13, 1.5, 1.5);
+    break;
+
+case 'Konglomera':
+    tCtx.beginPath();
+    tCtx.arc(5, 5, 3.5, 0, 2*Math.PI);
+    tCtx.arc(15, 15, 3.5, 0, 2*Math.PI);
+    tCtx.stroke();
+    tCtx.fillRect(11, 4, 1.5, 1.5);
+    tCtx.fillRect(4, 12, 1.5, 1.5);
+    break;
+
+case 'Breş':
+    tCtx.beginPath();
+    // Köşeli çakıllar (üçgenimsi)
+    tCtx.moveTo(5,2); tCtx.lineTo(8,7); tCtx.lineTo(2,7); tCtx.closePath();
+    tCtx.moveTo(15,12); tCtx.lineTo(19,18); tCtx.lineTo(12,17); tCtx.closePath();
+    tCtx.stroke();
+    tCtx.fillRect(10, 9, 1.5, 1.5);
+    break;
+
 case 'Kumtaşı':
-tCtx.fillStyle = 'rgba(15, 23, 42, 0.7)';
-tCtx.fillRect(2, 3, 1.5, 1.5);
-tCtx.fillRect(10, 11, 1.5, 1.5);
-tCtx.beginPath();
-tCtx.moveTo(0, 7); tCtx.lineTo(18, 7);
-tCtx.stroke();
-break;
-case 'Çakıltaşı':
-tCtx.beginPath();
-tCtx.rect(2, 2, 6, 5);
-tCtx.arc(13, 12, 4, 0, 2 * Math.PI);
-tCtx.stroke();
-break;
+    // Kum gibi ama arkada hafif sürekli bağlayıcı var (kesikli çizgi ile ayrılmış noktalar)
+    tCtx.beginPath();
+    tCtx.moveTo(0, 10); tCtx.lineTo(20, 10);
+    tCtx.stroke();
+    tCtx.fillRect(4, 4, 1.5, 1.5);
+    tCtx.fillRect(15, 5, 1.5, 1.5);
+    tCtx.fillRect(8, 15, 1.5, 1.5);
+    tCtx.fillRect(18, 16, 1.5, 1.5);
+    break;
+
+case 'Silttaşı':
+    tCtx.beginPath();
+    tCtx.moveTo(0, 5); tCtx.lineTo(20, 5);
+    tCtx.moveTo(0, 15); tCtx.lineTo(20, 15);
+    tCtx.stroke();
+    tCtx.fillRect(10, 10, 1.5, 1.5); // Aralara ufak noktalar
+    break;
+
+case 'Kiltaşı':
+    // Sürekli sık yatay çizgiler
+    tCtx.beginPath();
+    tCtx.moveTo(0, 4); tCtx.lineTo(20, 4);
+    tCtx.moveTo(0, 10); tCtx.lineTo(20, 10);
+    tCtx.moveTo(0, 16); tCtx.lineTo(20, 16);
+    tCtx.stroke();
+    break;
+
+case 'Çamurtaşı':
+    // Çizgi ve nokta karışımı sıkı doku
+    tCtx.beginPath();
+    tCtx.moveTo(0, 6); tCtx.lineTo(20, 6);
+    tCtx.moveTo(0, 14); tCtx.lineTo(20, 14);
+    tCtx.stroke();
+    tCtx.fillRect(8, 2, 1.5, 1.5);
+    tCtx.fillRect(12, 10, 1.5, 1.5);
+    tCtx.fillRect(6, 18, 1.5, 1.5);
+    break;
+
 case 'Kireçtaşı':
-tCtx.beginPath();
-tCtx.moveTo(0, 6); tCtx.lineTo(18, 6);
-tCtx.moveTo(6, 0); tCtx.lineTo(6, 6);
-tCtx.stroke();
-break;
-case 'Mermer':
-tCtx.beginPath();
-tCtx.moveTo(0, 18); tCtx.lineTo(18, 0);
-tCtx.stroke();
-break;
-case 'Şist':
-tCtx.beginPath();
-tCtx.bezierCurveTo(0, 3, 9, 0, 18, 3);
-tCtx.stroke();
-break;
-case 'Volkanit':
-tCtx.beginPath();
-tCtx.moveTo(3, 3); tCtx.lineTo(6, 8); tCtx.lineTo(9, 3);
-tCtx.stroke();
-break;
-case 'Metavolkanit':
-tCtx.beginPath();
-tCtx.moveTo(0, 9); tCtx.lineTo(18, 9);
-tCtx.stroke();
-break;
+case 'Traverten':
+    // Klasik tuğla deseni
+    tCtx.beginPath();
+    tCtx.moveTo(0, 10); tCtx.lineTo(20, 10); // Yatay çizgi ortada
+    tCtx.moveTo(0, 20); tCtx.lineTo(20, 20); // Yatay çizgi alt (döngü için)
+    tCtx.moveTo(10, 0); tCtx.lineTo(10, 10); // Üst sıra dikey derz
+    tCtx.moveTo(0, 10); tCtx.lineTo(0, 20);  // Alt sıra dikey derz sol
+    tCtx.moveTo(20, 10); tCtx.lineTo(20, 20); // Alt sıra dikey derz sağ
+    tCtx.stroke();
+    break;
+
+case 'Dolomit':
+    // Kireçtaşına benzer ancak dikey çizgiler eğimli
+    tCtx.beginPath();
+    tCtx.moveTo(0, 10); tCtx.lineTo(20, 10);
+    tCtx.moveTo(13, 0); tCtx.lineTo(7, 10);
+    tCtx.moveTo(3, 10); tCtx.lineTo(-3, 20);
+    tCtx.moveTo(23, 10); tCtx.lineTo(17, 20);
+    tCtx.stroke();
+    break;
+
+case 'Marn':
+    // Kireçtaşı ve kil karışımı
+    tCtx.beginPath();
+    tCtx.moveTo(0, 8); tCtx.lineTo(20, 8);
+    tCtx.moveTo(10, 0); tCtx.lineTo(10, 8);
+    tCtx.stroke();
+    tCtx.beginPath();
+    tCtx.setLineDash([3, 2]);
+    tCtx.moveTo(0, 16); tCtx.lineTo(20, 16); // Kil çizgisi
+    tCtx.stroke();
+    tCtx.setLineDash([]);
+    break;
+
+case 'Tüf':
+case 'İgnimbrit':
+    tCtx.beginPath();
+    tCtx.moveTo(4, 4); tCtx.lineTo(7, 9); tCtx.lineTo(10, 4);
+    tCtx.moveTo(14, 14); tCtx.lineTo(17, 19); tCtx.lineTo(20, 14);
+    tCtx.stroke();
+    tCtx.fillRect(12, 6, 1.5, 1.5);
+    tCtx.fillRect(5, 15, 1.5, 1.5);
+    break;
+
+case 'Aglomera':
+    tCtx.beginPath();
+    tCtx.moveTo(5,2); tCtx.lineTo(9,8); tCtx.lineTo(1,8); tCtx.closePath();
+    tCtx.stroke();
+    tCtx.beginPath();
+    tCtx.moveTo(15,12); tCtx.lineTo(19,18); tCtx.lineTo(11,18); tCtx.closePath();
+    tCtx.stroke();
+    tCtx.fillRect(10, 10, 2, 2);
+    break;
+
+case 'Bazalt / Andezit':
+case 'Bazalt':
+case 'Andezit':
+case 'Riyolit':
+case 'Trakit':
+case 'Spilit':
+    // Karmaşık açılı "V" harfleri
+    tCtx.beginPath();
+    tCtx.moveTo(3, 4); tCtx.lineTo(6, 8); tCtx.lineTo(9, 4);
+    tCtx.moveTo(11, 15); tCtx.lineTo(14, 11); tCtx.lineTo(17, 15);
+    tCtx.moveTo(16, 3); tCtx.lineTo(19, 7);
+    tCtx.stroke();
+    break;
+
 case 'Granit':
-tCtx.beginPath();
-tCtx.moveTo(4, 4); tCtx.lineTo(10, 4);
-tCtx.moveTo(7, 1); tCtx.lineTo(7, 7);
-tCtx.stroke();
-break;
+case 'Siyenit':
+case 'Diyorit':
+case 'Pegmatit':
+    // Rastgele artılar (kuvars, feldspat, mika taneleri)
+    tCtx.beginPath();
+    tCtx.moveTo(5, 2); tCtx.lineTo(5, 8);
+    tCtx.moveTo(2, 5); tCtx.lineTo(8, 5);
+    
+    tCtx.moveTo(15, 12); tCtx.lineTo(15, 18);
+    tCtx.moveTo(12, 15); tCtx.lineTo(18, 15);
+    
+    tCtx.moveTo(12, 4); tCtx.lineTo(16, 8); // Çapraz kırıklar
+    tCtx.moveTo(4, 14); tCtx.lineTo(8, 18);
+    tCtx.stroke();
+    break;
+
+case 'Gabro':
+case 'Peridotit':
+case 'Amfibolit':
+    tCtx.lineWidth = 1.5; // Daha kalın çizgiler (koyu renkli mineralleri temsilen)
+    tCtx.beginPath();
+    tCtx.moveTo(4, 4); tCtx.lineTo(10, 10);
+    tCtx.moveTo(10, 4); tCtx.lineTo(4, 10);
+    tCtx.moveTo(14, 14); tCtx.lineTo(20, 20);
+    tCtx.moveTo(20, 14); tCtx.lineTo(14, 20);
+    tCtx.stroke();
+    break;
+
+case 'Şist':
+    // Sık dalgalı çizgiler (folyasyon)
+    tCtx.beginPath();
+    tCtx.bezierCurveTo(0, 3, 10, -2, 20, 3);
+    tCtx.bezierCurveTo(0, 10, 10, 5, 20, 10);
+    tCtx.bezierCurveTo(0, 17, 10, 12, 20, 17);
+    tCtx.stroke();
+    break;
+
+case 'Gnays':
+    // Kesintili dalgalı çizgiler
+    tCtx.beginPath();
+    tCtx.setLineDash([6, 3]);
+    tCtx.bezierCurveTo(0, 5, 10, 0, 20, 5);
+    tCtx.stroke();
+    tCtx.setLineDash([]);
+    tCtx.beginPath();
+    tCtx.bezierCurveTo(0, 15, 10, 10, 20, 15);
+    tCtx.stroke();
+    break;
+
+case 'Mermer':
+case 'Alçıtaşı (Jips)':
+case 'Kaya Tuzu':
+    // Kırıklı çapraz iri blok yapısı
+    tCtx.beginPath();
+    tCtx.moveTo(0, 20); tCtx.lineTo(20, 0);
+    tCtx.moveTo(5, 15); tCtx.lineTo(10, 20);
+    tCtx.moveTo(10, 0); tCtx.lineTo(15, 5);
+    tCtx.stroke();
+    break;
+
+case 'Kuvarsit':
+    // Birbirine kilitlenmiş çokgen (mozaik) doku basit temsili
+    tCtx.beginPath();
+    tCtx.moveTo(5, 0); tCtx.lineTo(10, 6); tCtx.lineTo(5, 12); tCtx.lineTo(0, 6); tCtx.closePath();
+    tCtx.moveTo(15, 8); tCtx.lineTo(20, 14); tCtx.lineTo(15, 20); tCtx.lineTo(10, 14); tCtx.closePath();
+    tCtx.stroke();
+    break;
+
 case 'Serpantinit':
-tCtx.beginPath();
-tCtx.moveTo(0, 0); tCtx.lineTo(18, 18);
-tCtx.stroke();
-break;
+    tCtx.beginPath();
+    tCtx.moveTo(0, 0); tCtx.lineTo(20, 20);
+    tCtx.moveTo(0, 10); tCtx.lineTo(10, 20);
+    tCtx.moveTo(10, 0); tCtx.lineTo(20, 10);
+    tCtx.stroke();
+    break;
+    
+default:
+    // Varsayılan düz tarama
+    tCtx.beginPath();
+    tCtx.moveTo(0, 0); tCtx.lineTo(20, 20);
+    tCtx.stroke();
 }
 
 return ctx.createPattern(tempCanvas, 'repeat');
@@ -1289,12 +1423,12 @@ const pipeSpec = document.getElementById('tech_pipe_spec').value || "Boru Çapı
 const holeSpec = document.getElementById('tech_hole_spec').value || "Delgi Çapı";
 
 if (lithologies.length === 0) {
-ctx.fillStyle = '#f1f5f9';
+ctx.fillStyle = '#ffffff';
 ctx.fillRect(litoLeft, padding, litoWidth, drawHeight);
-ctx.strokeStyle = '#cbd5e1';
+ctx.strokeStyle = '#000000';
 ctx.strokeRect(litoLeft, padding, litoWidth, drawHeight);
 
-ctx.fillStyle = '#64748b';
+ctx.fillStyle = '#000000';
 ctx.font = '10px sans-serif';
 ctx.textAlign = 'center';
 ctx.fillText("Litoloji Eklenmedi", litoLeft + (litoWidth/2), padding + (drawHeight/2));
@@ -1303,16 +1437,21 @@ lithologies.forEach(l => {
 const y = padding + (l.start * scale);
 const h = l.thick * scale;
 
-const pattern = createHatchPattern(ctx, l.type, litColors[l.type] || '#ccc');
+// Tümü Siyah/Beyaz tarama
+const pattern = createHatchPattern(ctx, l.type);
 ctx.fillStyle = pattern;
 ctx.fillRect(litoLeft, y, litoWidth, h);
 
-ctx.strokeStyle = '#1e293b';
+ctx.strokeStyle = '#000000';
 ctx.lineWidth = 1;
 ctx.strokeRect(litoLeft, y, litoWidth, h);
 
+// B&W Litoloji Etiketleri
 if (h > 15) {
-ctx.fillStyle = '#0f172a';
+ctx.fillStyle = '#ffffff';
+const textW = ctx.measureText(l.type).width + 4;
+ctx.fillRect(litoLeft + 2, y + (h/2) - 4, textW, 10);
+ctx.fillStyle = '#000000';
 ctx.font = 'bold 8px sans-serif';
 ctx.textAlign = 'left';
 ctx.fillText(l.type, litoLeft + 4, y + (h/2) + 3);
@@ -1320,10 +1459,10 @@ ctx.fillText(l.type, litoLeft + 4, y + (h/2) + 3);
 });
 }
 
-ctx.fillStyle = '#f8fafc';
+ctx.fillStyle = '#ffffff';
 ctx.fillRect(techLeft, padding, techWidth, drawHeight);
 
-ctx.strokeStyle = '#64748b';
+ctx.strokeStyle = '#000000';
 ctx.lineWidth = 1.2;
 ctx.setLineDash([4, 4]);
 ctx.beginPath();
@@ -1339,14 +1478,16 @@ const y = padding + (t.start * scale);
 const h = t.thick * scale;
 
 if (t.type === 'Çakıl') {
-ctx.fillStyle = '#cbd5e1';
+ctx.fillStyle = '#ffffff';
 ctx.fillRect(techLeft, y, 18, h);
 ctx.fillRect(techLeft + techWidth - 18, y, 18, h);
 
-ctx.fillStyle = '#475569';
-for(let py = y + 4; py < y + h; py += 12) {
-ctx.fillRect(techLeft + 4, py, 2.5, 2.5);
-ctx.fillRect(techLeft + techWidth - 10, py, 2.5, 2.5);
+ctx.fillStyle = '#000000';
+for(let py = y + 4; py < y + h; py += 10) {
+ctx.beginPath();
+ctx.arc(techLeft + 9, py, 1.5, 0, Math.PI*2);
+ctx.arc(techLeft + techWidth - 9, py + 4, 1.5, 0, Math.PI*2);
+ctx.fill();
 }
 }
 });
@@ -1367,11 +1508,11 @@ currentChunkEnd = parseFloat(currentChunkEnd.toFixed(2));
 let chunkY = padding + (currentChunkStart * scale);
 let chunkH = (currentChunkEnd - currentChunkStart) * scale;
 
-ctx.fillStyle = 'rgba(241, 245, 249, 0.9)';
+ctx.fillStyle = '#ffffff';
 ctx.fillRect(pipeLeft, chunkY, pipeWidth, chunkH);
 
-ctx.strokeStyle = '#cbd5e1';
-ctx.lineWidth = 1;
+ctx.strokeStyle = '#000000';
+ctx.lineWidth = 1.5;
 ctx.setLineDash([]);
 ctx.beginPath();
 ctx.rect(pipeLeft, chunkY, pipeWidth, chunkH);
@@ -1387,10 +1528,11 @@ let labelY = chunkY + (chunkH / 2) - (textH / 2);
 if (chunkH >= 11) {
 ctx.fillStyle = '#ffffff';
 ctx.fillRect(labelX, labelY, textW, textH);
-ctx.strokeStyle = '#e2e8f0';
+ctx.strokeStyle = '#000000';
+ctx.lineWidth = 0.5;
 ctx.strokeRect(labelX, labelY, textW, textH);
 
-ctx.fillStyle = '#64748b'; 
+ctx.fillStyle = '#000000'; 
 ctx.textAlign = 'center';
 ctx.textBaseline = 'middle';
 ctx.fillText(text, pipeLeft + (pipeWidth / 2), chunkY + (chunkH / 2));
@@ -1400,28 +1542,29 @@ currentChunkStart = currentChunkEnd;
 }
 }
 else if (t.type === 'Filtreli') {
-ctx.fillStyle = 'rgba(59, 130, 246, 0.3)';
+ctx.fillStyle = '#ffffff';
 ctx.fillRect(pipeLeft, y, pipeWidth, h);
 
-ctx.strokeStyle = '#2563eb';
-ctx.lineWidth = 1.5;
+ctx.strokeStyle = '#000000';
+ctx.lineWidth = 2;
 ctx.setLineDash([]);
 ctx.beginPath();
 ctx.rect(pipeLeft, y, pipeWidth, h);
 ctx.stroke();
 
-ctx.strokeStyle = 'rgba(37, 99, 235, 0.5)';
-ctx.lineWidth = 0.5;
+// Filtre Siyah Slot Çizgileri
+ctx.strokeStyle = '#000000';
+ctx.lineWidth = 1;
 ctx.beginPath();
-for(let slotY = y + 2; slotY < y + h; slotY += 3) {
-ctx.moveTo(pipeLeft + 2, slotY);
-ctx.lineTo(pipeLeft + pipeWidth - 2, slotY);
+for(let slotY = y + 3; slotY < y + h; slotY += 4) {
+ctx.moveTo(pipeLeft + 4, slotY);
+ctx.lineTo(pipeLeft + pipeWidth - 4, slotY);
 }
 ctx.stroke();
 
 let text = `Filtre ${t.start}-${t.end}`;
 ctx.font = 'bold 8px sans-serif';
-let textW = ctx.measureText(text).width + 4;
+let textW = ctx.measureText(text).width + 6;
 let textH = 10;
 let labelX = pipeLeft + (pipeWidth / 2) - (textW / 2);
 let labelY = y + (h / 2) - (textH / 2);
@@ -1429,11 +1572,11 @@ let labelY = y + (h / 2) - (textH / 2);
 if (h >= 11) {
 ctx.fillStyle = '#ffffff';
 ctx.fillRect(labelX, labelY, textW, textH);
-ctx.strokeStyle = '#2563eb';
+ctx.strokeStyle = '#000000';
 ctx.lineWidth = 1;
 ctx.strokeRect(labelX, labelY, textW, textH);
 
-ctx.fillStyle = '#1e3a8a';
+ctx.fillStyle = '#000000';
 ctx.textAlign = 'center';
 ctx.textBaseline = 'middle';
 ctx.fillText(text, pipeLeft + (pipeWidth / 2), y + (h / 2));
@@ -1441,7 +1584,7 @@ ctx.fillText(text, pipeLeft + (pipeWidth / 2), y + (h / 2));
 }
 });
 
-ctx.fillStyle = '#0f172a';
+ctx.fillStyle = '#000000';
 ctx.font = 'bold 8px monospace';
 ctx.textBaseline = 'middle';
 ctx.textAlign = 'right';
@@ -1452,14 +1595,8 @@ lithologies.forEach(l => { depthLines.add(l.start); depthLines.add(l.end); });
 Array.from(depthLines).sort((a,b) => a-b).forEach(d => {
 const y = padding + (d * scale);
 
-ctx.strokeStyle = 'rgba(15, 23, 42, 0.15)';
-ctx.lineWidth = 0.5;
-ctx.beginPath();
-ctx.moveTo(10, y);
-ctx.lineTo(canvasWidth - 10, y);
-ctx.stroke();
-
-ctx.fillStyle = '#334155';
+// Sadece metreler yazacak (yatay çizgiler kaldırıldı)
+ctx.fillStyle = '#000000';
 ctx.fillText(d + 'm', 38, y);
 });
 
@@ -1469,12 +1606,8 @@ ctx.textAlign = 'center';
 ctx.fillText("JEOLOJİK KESİT", litoLeft + (litoWidth/2), padding - 35);
 ctx.fillText("TEÇHİZ PLANI", techLeft + (techWidth/2), padding - 35);
 
-ctx.fillStyle = '#000000';
 ctx.font = 'bold 7.5px sans-serif';
-ctx.textAlign = 'center';
 ctx.fillText("Delgi: " + holeSpec, techLeft + (techWidth/2), padding - 22);
-
-ctx.fillStyle = '#000000';
 ctx.fillText("Boru: " + pipeSpec, techLeft + (techWidth/2), padding - 10);
 }
 
@@ -1492,7 +1625,7 @@ const ctx = canvas.getContext('2d');
 
 ctx.scale(scaleFactor, scaleFactor);
 
-ctx.fillStyle = '#1e293b';
+ctx.fillStyle = '#ffffff';
 ctx.fillRect(0, 0, mapContainer.offsetWidth, mapContainer.offsetHeight);
 
 let loadedCount = 0;
@@ -1547,7 +1680,7 @@ ctx.beginPath();
 ctx.arc(mx, my - 20, 3, 0, 2 * Math.PI);
 ctx.fill();
 
-ctx.strokeStyle = 'rgba(239, 68, 68, 0.8)';
+ctx.strokeStyle = '#000000';
 ctx.lineWidth = 2;
 ctx.beginPath();
 ctx.ellipse(mx, my, 8, 3, 0, 0, 2 * Math.PI);
