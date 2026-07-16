@@ -147,22 +147,14 @@ color: #000000;
 <h2 class="text-base font-bold text-slate-800">Kuyu Künyesi</h2>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
-<div class="md:col-span-4">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+<div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">FİRMA ADI</label>
 <input type="text" id="firm_name" value="" placeholder="Örn: Yeryüzü Jeoteknik A.Ş." class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
-<div class="md:col-span-3">
+<div>
 <label class="block text-xs font-bold text-slate-500 mb-1">SORUMLU MÜHENDİS</label>
 <input type="text" id="firm_engineer" value="" placeholder="Ad Soyad" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
-</div>
-<div class="md:col-span-3">
-<label class="block text-xs font-bold text-slate-500 mb-1">MÜHENDİS MESLEĞİ</label>
-<input type="text" id="eng_profession" value="" placeholder="Örn: Jeoloji Mühendisi" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
-</div>
-<div class="md:col-span-2">
-<label class="block text-xs font-bold text-slate-500 mb-1">SONDÖR</label>
-<input type="text" id="driller_name" value="" placeholder="Ad Soyad" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
 
@@ -200,10 +192,10 @@ color: #000000;
 </div>
 <div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">DERİNLİK (m)</label>
-<input type="number" id="p_derinlik" value="" placeholder="Örn: 160" oninput="autoGenerateBoringDesign()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
+<input type="number" id="p_derinlik" value="" placeholder="Örn: 160" oninput="drawCanvasLog()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div class="md:col-span-3">
-<label class="block text-xs font-bold text-slate-500 mb-1">AÇILIŞ GAYESİ</label>
+<label class="block text-xs font-bold text-slate-500 mb-1">KUYU AMACI</label>
 <input type="text" id="p_amaci" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 </div>
@@ -257,7 +249,7 @@ color: #000000;
 </div>
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
 <div>
-<label class="block text-xs font-bold text-slate-600 mb-1">KUYU VERİMİ (lt/sn)</label>
+<label class="block text-xs font-bold text-slate-600 mb-1">KUYU VERİMİ / DEBİ (Q - lt/sn)</label>
 <input type="number" step="0.1" id="v_debi" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
 <div>
@@ -476,9 +468,9 @@ color: #000000;
 <!-- SOL SÜTUN (%50 Ortalandı) -->
 <div class="col-span-6 flex flex-col h-full" style="max-height: 260mm;">
 
-<!-- 1. Genel Durum -->
+<!-- 1. Proje Künyesi -->
 <div class="mb-2">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Genel Durum</h2>
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Genel Proje ve Ruhsat Künyesi</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
@@ -487,11 +479,15 @@ color: #000000;
 <td class="p-1.5 text-black font-normal" id="pdf_firm_name_td">-</td>
 </tr>
 <tr>
+<td class="text-black p-1.5 font-bold border-r border-black">Sorumlu Mühendis</td>
+<td class="p-1.5 text-black font-normal" id="pdf_responsible_eng">-</td>
+</tr>
+<tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Kuyu Sahibi</td>
 <td class="p-1.5 text-black font-normal" id="pdf_client_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Açılış Gayesi</td>
+<td class="text-black p-1.5 font-bold border-r border-black">Kullanım Amacı</td>
 <td class="p-1.5 text-black font-normal" id="pdf_kuyu_amaci">-</td>
 </tr>
 <tr>
@@ -511,6 +507,10 @@ color: #000000;
 <td class="p-1.5 text-black font-normal" id="pdf_depth_val">0 m</td>
 </tr>
 <tr>
+<td class="text-black p-1.5 font-bold border-r border-black">Teçhiz ve Delgi Çapı</td>
+<td class="p-1.5 text-black font-normal" id="pdf_pipe_spec_val">-</td>
+</tr>
+<tr>
 <td class="text-black p-1.5 font-bold border-r border-black">Tarihi</td>
 <td class="p-1.5 font-mono text-black font-normal" id="pdf_tarih_val">-</td>
 </tr>
@@ -519,26 +519,7 @@ color: #000000;
 </div>
 </div>
 
-<!-- 2. Mesul Şahıslar -->
-<div class="mb-2">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Mesul Şahıslar</h2>
-<div class="border border-black rounded overflow-hidden">
-<table class="w-full text-[10px] text-left">
-<tbody class="divide-y divide-black">
-<tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Sorumlu Mühendis</td>
-<td class="p-1.5 text-black font-normal" id="pdf_responsible_eng">-</td>
-</tr>
-<tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Sondör</td>
-<td class="p-1.5 text-black font-normal" id="pdf_driller_val">-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-<!-- 3. Pompa Deneyi -->
+<!-- 2. Pompa Deneyi -->
 <div class="mb-2">
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Pompa Deney Verileri</h2>
 <div class="border border-black rounded overflow-hidden">
@@ -646,7 +627,6 @@ color: #000000;
 <div class="text-center mt-3">
 <span class="text-[10px] font-bold text-black uppercase block">Sorumlu Mühendis</span>
 <span class="text-[12px] font-bold text-black block mt-1" id="pdf_sig_eng_p1">Ahmet Yılmaz</span>
-<span class="text-[10px] text-black block mt-0.5" id="pdf_sig_eng_prof"></span>
 </div>
 </div>
 <!-- Karekod (Sadece Konum) -->
@@ -682,15 +662,6 @@ let map;
 let kuyuMarker;
 let isSatellite = true;
 
-// --- KAYDET / YÜKLE SİSTEMİ (SADECE DOSYA) ---
-// driller_name ve eng_profession inputları listeye eklendi
-const inputIdsToSave = [
-    'firm_name', 'firm_engineer', 'eng_profession', 'driller_name', 'p_client', 'p_il', 'p_ilce', 'p_mahalle', 
-    'p_ada', 'p_parsel', 'p_tarih', 'p_derinlik', 'p_amaci', 'p_zone', 
-    'p_easting', 'p_northing', 'p_lat', 'p_lon', 'v_debi', 'v_statik', 
-    'v_dinamik', 'v_sure', 'tech_pipe_spec', 'tech_hole_spec', 'filterDepthsInput'
-];
-
 // Leaflet Harita Katmanları (Esri & OSM)
 const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 attribution: 'Tiles © Esri',
@@ -701,6 +672,14 @@ const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.
 attribution: '© OpenStreetMap',
 crossOrigin: 'anonymous'
 });
+
+// --- KAYDET / YÜKLE SİSTEMİ (SADECE DOSYA) ---
+const inputIdsToSave = [
+    'firm_name', 'firm_engineer', 'p_client', 'p_il', 'p_ilce', 'p_mahalle', 
+    'p_ada', 'p_parsel', 'p_tarih', 'p_derinlik', 'p_amaci', 'p_zone', 
+    'p_easting', 'p_northing', 'p_lat', 'p_lon', 'v_debi', 'v_statik', 
+    'v_dinamik', 'v_sure', 'tech_pipe_spec', 'tech_hole_spec', 'filterDepthsInput'
+];
 
 function getProjectData() {
     let data = { inputs: {}, lithologies: lithologies };
@@ -911,12 +890,7 @@ const type = document.getElementById('litType').value;
 const start = parseFloat(document.getElementById('litStartD').value);
 const end = parseFloat(document.getElementById('litEndD').value);
 
-const totalDepth = parseFloat(document.getElementById('p_derinlik').value);
-
-if (isNaN(totalDepth) || totalDepth <= 0) {
-showToast("Önce kuyu derinliğini girmelisiniz!", "error");
-return;
-}
+const totalDepth = parseFloat(document.getElementById('p_derinlik').value) || 100;
 
 if (isNaN(start) || isNaN(end) || start >= end) {
 showToast("Üst sınır alt sınırdan küçük olmalıdır!", "error");
@@ -946,20 +920,15 @@ showToast("Jeolojik katman eklendi.", "success");
 
 function autoGenerateBoringDesign() {
 const rawVal = document.getElementById('filterDepthsInput').value;
-const totalDepth = parseFloat(document.getElementById('p_derinlik').value);
+const totalDepth = parseFloat(document.getElementById('p_derinlik').value) || 100;
 const pipeSpec = document.getElementById('tech_pipe_spec').value || "Boru Çapı";
-
-techLayers = [];
-
-if (isNaN(totalDepth) || totalDepth <= 0) {
-drawCanvasLog();
-return;
-}
 
 const starts = rawVal.split(',')
 .map(v => parseFloat(v.trim()))
 .filter(v => !isNaN(v) && v >= 0 && v < totalDepth)
 .sort((a,b) => a - b);
+
+techLayers = [];
 
 if(starts.length === 0) {
 techLayers.push({
@@ -1061,9 +1030,7 @@ showToast("Tüm veriler temizlendi.", "info");
 
 function loadSampleData() {
 document.getElementById('firm_name').value = "Mega Altyapı Sondaj & Geoteknik Müşavirlik";
-document.getElementById('firm_engineer').value = "Kemal Alkan";
-document.getElementById('eng_profession').value = "Jeoloji Mühendisi"; // Meslek Şablon
-document.getElementById('driller_name').value = "Ahmet Usta"; // Sondör Şablon
+document.getElementById('firm_engineer').value = "Kemal Alkan (Jeoloji Mühendisi)";
 document.getElementById('p_client').value = "Yıldız Tekstil Sanayi Ltd. Şti.";
 document.getElementById('p_il').value = "Bursa";
 document.getElementById('p_ilce').value = "Yenişehir";
@@ -1080,7 +1047,7 @@ updateMapFromInputs();
 document.getElementById('v_debi').value = "24";
 document.getElementById('v_statik').value = "22";
 document.getElementById('v_dinamik').value = "54";
-document.getElementById('v_sure').value = "48"; // 24 yerine 48 saat
+document.getElementById('v_sure').value = "24";
 
 lithologies = [
 { type: 'Bitkisel Toprak', start: 0, end: 3, thick: 3 },
@@ -1438,22 +1405,7 @@ ctx.scale(scaleFactor, scaleFactor);
 const canvasWidth = cssWidth;
 const canvasHeight = cssHeight;
 
-const totalDepth = parseFloat(document.getElementById('p_derinlik').value);
-
-// Eğer kuyu derinliği girilmemişse boş bir ekran göster
-if (isNaN(totalDepth) || totalDepth <= 0) {
-    document.getElementById('canvasDepthIndicator').innerText = "0 m";
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-    
-    ctx.fillStyle = '#94a3b8';
-    ctx.font = '14px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText("Lütfen Kuyu Derinliğini Giriniz", canvasWidth / 2, canvasHeight / 2);
-    return;
-}
-
+const totalDepth = parseFloat(document.getElementById('p_derinlik').value) || 100;
 document.getElementById('canvasDepthIndicator').innerText = totalDepth + " m";
 
 const padding = 55;
@@ -1759,13 +1711,8 @@ showToast("Baskı önizleme hazırlanıyor, lütfen bekleyin...", "info");
 
 document.getElementById('pdf_firm_name_td').innerText = document.getElementById('firm_name').value || "-";
 document.getElementById('pdf_kuyu_amaci').innerText = document.getElementById('p_amaci').value || "-";
+document.getElementById('pdf_responsible_eng').innerText = document.getElementById('firm_engineer').value || "-";
 document.getElementById('pdf_client_val').innerText = document.getElementById('p_client').value || "-";
-
-// Mesul Şahıslar Aktarımı
-const engName = document.getElementById('firm_engineer').value || "-";
-const engProf = document.getElementById('eng_profession').value || "";
-document.getElementById('pdf_responsible_eng').innerText = engProf ? `${engName} (${engProf})` : engName;
-document.getElementById('pdf_driller_val').innerText = document.getElementById('driller_name').value || "-";
 
 const il = document.getElementById('p_il').value;
 const ilce = document.getElementById('p_ilce').value;
@@ -1782,6 +1729,7 @@ const northing = document.getElementById('p_northing').value;
 document.getElementById('pdf_utm_val').innerText = (zone || easting || northing) ? `${zone} N ${northing} K` : "-";
 
 document.getElementById('pdf_depth_val').innerText = (document.getElementById('p_derinlik').value || "0") + " Metre";
+document.getElementById('pdf_pipe_spec_val').innerText = (document.getElementById('tech_pipe_spec').value || "-") + " (" + (document.getElementById('tech_hole_spec').value || "-") + ")";
 
 const rawDate = document.getElementById('p_tarih').value;
 if (rawDate) {
@@ -1801,8 +1749,7 @@ document.getElementById('pdf_hyd_statik').innerText = statikVal ? statikVal + " 
 document.getElementById('pdf_hyd_dinamik').innerText = dinamikVal ? dinamikVal + " m" : "-";
 document.getElementById('pdf_hyd_sure').innerText = sureVal ? sureVal + " Saat" : "-";
 
-document.getElementById('pdf_sig_eng_p1').innerText = engName !== "-" ? engName : "Sorumlu Mühendis";
-document.getElementById('pdf_sig_eng_prof').innerText = engProf;
+document.getElementById('pdf_sig_eng_p1').innerText = document.getElementById('firm_engineer').value || "Sorumlu Mühendis";
 document.getElementById('svg_pipe_spec').textContent = document.getElementById('tech_pipe_spec').value || "";
 document.getElementById('svg_hole_spec').textContent = document.getElementById('tech_hole_spec').value || "";
 
