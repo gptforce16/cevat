@@ -194,7 +194,7 @@ color: #000000;
 <label class="block text-xs font-bold text-slate-500 mb-1">PARSEL</label>
 <input type="text" id="p_parsel" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
-<div class="md:col-span-3">
+<div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">TARİHİ</label>
 <input type="date" id="p_tarih" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
@@ -202,7 +202,11 @@ color: #000000;
 <label class="block text-xs font-bold text-slate-500 mb-1">DERİNLİK (m)</label>
 <input type="number" id="p_derinlik" value="" placeholder="Örn: 160" oninput="autoGenerateBoringDesign()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
-<div class="md:col-span-3">
+<div class="md:col-span-2">
+<label class="block text-xs font-bold text-slate-500 mb-1">DSİ NO</label>
+<input type="text" id="p_dsi_no" value="" placeholder="Örn: 12345" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
+</div>
+<div class="md:col-span-2">
 <label class="block text-xs font-bold text-slate-500 mb-1">AÇILIŞ GAYESİ</label>
 <input type="text" id="p_amaci" value="" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-slate-500 outline-none">
 </div>
@@ -477,38 +481,42 @@ color: #000000;
 <div class="col-span-6 flex flex-col h-full">
 
 <!-- 1. Genel Durum -->
-<div class="mb-2">
+<div class="mb-1">
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Genel Durum</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Adres</td>
-<td class="p-1.5 text-black font-normal" id="pdf_location_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold w-[35%] border-r border-black">Adres</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_location_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Ada / Parsel</td>
-<td class="p-1.5 text-black font-normal" id="pdf_mevkii_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Ada / Parsel</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_mevkii_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Koordinat (ED50_6)</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_utm_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Koordinat (ED50_6)</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_utm_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Kuyu Sahibi</td>
-<td class="p-1.5 text-black font-normal" id="pdf_client_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Kuyu Sahibi</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_client_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Açılış Gayesi</td>
-<td class="p-1.5 text-black font-normal" id="pdf_kuyu_amaci">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Açılış Gayesi</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_kuyu_amaci">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Tarihi</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_tarih_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Tarihi</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_tarih_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Kuyu Derinliği</td>
-<td class="p-1.5 text-black font-normal" id="pdf_depth_val">0 m</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Kuyu Derinliği</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_depth_val">0 m</td>
+</tr>
+<tr>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">DSİ No</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_dsi_no_val">-</td>
 </tr>
 </tbody>
 </table>
@@ -516,22 +524,22 @@ color: #000000;
 </div>
 
 <!-- 2. Açan Firma ve Mesul Şahıslar -->
-<div class="mb-2">
+<div class="mb-1">
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Açan Firma ve Mesul Şahıslar</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Firma Adı</td>
-<td class="p-1.5 text-black font-normal" id="pdf_firm_name_td">-</td>
+<td class="text-black px-1 py-0.5 font-bold w-[35%] border-r border-black">Firma Adı</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_firm_name_td">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black" id="pdf_eng_prof_label">Sorumlu Mühendis</td>
-<td class="p-1.5 text-black font-normal" id="pdf_responsible_eng">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black" id="pdf_eng_prof_label">Sorumlu Mühendis</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_responsible_eng">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Sondör</td>
-<td class="p-1.5 text-black font-normal" id="pdf_driller_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Sondör</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_driller_val">-</td>
 </tr>
 </tbody>
 </table>
@@ -539,26 +547,26 @@ color: #000000;
 </div>
 
 <!-- 3. Su Verim Tecrübesi -->
-<div class="mb-2">
+<div class="mb-1">
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Su Verim Tecrübesi</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Kuyu Verimi</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_debi">-</td>
+<td class="text-black px-1 py-0.5 font-bold w-[35%] border-r border-black">Kuyu Verimi</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_debi">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Statik Seviye</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_statik">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Statik Seviye</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_statik">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Dinamik Seviye</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_dinamik">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Dinamik Seviye</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_dinamik">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Pompa Çalışma Süresi</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_sure">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Pompa Çalışma Süresi</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_sure">-</td>
 </tr>
 </tbody>
 </table>
@@ -566,11 +574,11 @@ color: #000000;
 </div>
 
 <!-- Krokiler: Kuyu Başı & Lokasyon (Altlı Üstlü) -->
-<div class="mb-2 flex flex-col gap-2 flex-1">
+<div class="mb-1 flex flex-col gap-1 flex-1">
 <!-- Kuyubaşı Şeması (B&W Standard) -->
 <div>
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Kuyu Başı Krokisi</h2>
-<div class="border border-black rounded flex flex-col h-[135px] bg-white items-center justify-center overflow-hidden">
+<div class="border border-black rounded flex flex-col h-[100px] bg-white items-center justify-center overflow-hidden">
 <svg viewBox="0 10 300 235" class="w-full h-full">
 <defs>
 <pattern id="gravelPattern" width="15" height="15" patternUnits="userSpaceOnUse">
@@ -629,7 +637,7 @@ color: #000000;
 <!-- Harita Resmi -->
 <div class="flex flex-col flex-1">
 <h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Kuyu Yeri Krokisi</h2>
-<div class="border border-black rounded p-1 flex flex-col flex-1 min-h-[200px]">
+<div class="border border-black rounded p-1 flex flex-col flex-1 h-[200px]">
 <div id="pdf_map_image_container" class="w-full h-full bg-white flex items-center justify-center relative overflow-hidden rounded border border-black">
 <img id="pdf_map_static_img" class="absolute inset-0 w-full h-full object-cover" src="" alt="Konum Krokisi">
 </div>
@@ -684,7 +692,7 @@ let isSatellite = true;
 // --- KAYDET / YÜKLE SİSTEMİ (SADECE DOSYA) ---
 const inputIdsToSave = [
     'firm_name', 'firm_engineer', 'eng_profession', 'driller_name', 'p_client', 'p_il', 'p_ilce', 'p_mahalle', 
-    'p_ada', 'p_parsel', 'p_tarih', 'p_derinlik', 'p_amaci', 'p_zone', 
+    'p_ada', 'p_parsel', 'p_tarih', 'p_derinlik', 'p_dsi_no', 'p_amaci', 'p_zone', 
     'p_easting', 'p_northing', 'p_lat', 'p_lon', 'v_debi', 'v_statik', 
     'v_dinamik', 'v_sure', 'tech_pipe_spec', 'tech_hole_spec', 'filterDepthsInput'
 ];
@@ -1069,6 +1077,7 @@ document.getElementById('p_mahalle').value = "Çeltikçi";
 document.getElementById('p_ada').value = "104";
 document.getElementById('p_parsel').value = "12";
 document.getElementById('p_derinlik').value = "160";
+document.getElementById('p_dsi_no').value = "84512";
 document.getElementById('p_amaci').value = "Sulama";
 
 document.getElementById('p_lat').value = "40.262500";
@@ -1420,11 +1429,12 @@ return ctx.createPattern(tempCanvas, 'repeat');
 
 function drawCanvasLog() {
 const canvas = document.getElementById('logCanvas');
+if (!canvas) return; // Add a null check
 const ctx = canvas.getContext('2d');
 
 const cssWidth = 300;
 const cssHeight = 750; 
-const scaleFactor = 3;
+const scaleFactor = 5;
 
 canvas.width = cssWidth * scaleFactor;
 canvas.height = cssHeight * scaleFactor;
@@ -1500,7 +1510,7 @@ ctx.fillStyle = '#ffffff';
 const textW = ctx.measureText(l.type).width + 4;
 ctx.fillRect(litoLeft + 2, y + (h/2) - 4, textW, 10);
 ctx.fillStyle = '#000000';
-ctx.font = 'bold 8px sans-serif';
+ctx.font = '8px sans-serif';
 ctx.textAlign = 'left';
 ctx.fillText(l.type, litoLeft + 4, y + (h/2) + 3);
 }
@@ -1592,7 +1602,7 @@ ctx.rect(pipeLeft, y, pipeWidth, h);
 ctx.stroke();
 
 let text = `Filtre ${t.start}-${t.end}`;
-ctx.font = 'bold 8px sans-serif';
+ctx.font = '8px sans-serif';
 let textW = ctx.measureText(text).width + 6;
 let textH = 10;
 let labelX = pipeLeft + (pipeWidth / 2) - (textW / 2);
@@ -1628,7 +1638,7 @@ ctx.fillText(text, pipeLeft + (pipeWidth / 2), y + (h / 2));
 });
 
 ctx.fillStyle = '#000000';
-ctx.font = 'bold 8px monospace';
+ctx.font = '8px monospace';
 ctx.textBaseline = 'middle';
 ctx.textAlign = 'right';
 
@@ -1642,14 +1652,14 @@ ctx.fillText(d + 'm', 38, y);
 });
 
 ctx.fillStyle = '#000000';
-ctx.font = 'bold 8px sans-serif';
+ctx.font = '8px sans-serif';
 ctx.textAlign = 'center';
 
 // Başlıkların yüksekliği yastıklamaya(padding'e) göre orantılı olarak ayarlandı.
 ctx.fillText("LİTOLOJİK KESİT", litoLeft + (litoWidth/2), padding - 22);
 ctx.fillText("TEÇHİZ PLANI", techLeft + (techWidth/2), padding - 22);
 
-ctx.font = 'bold 7.5px sans-serif';
+ctx.font = '7.5px sans-serif';
 ctx.fillText("Delgi: " + holeSpec, techLeft + (techWidth/2), padding - 12);
 ctx.fillText("Boru: " + pipeSpec, techLeft + (techWidth/2), padding - 4);
 }
@@ -1779,6 +1789,7 @@ document.getElementById('pdf_tarih_val').innerText = `${d}.${m}.${y}`;
 document.getElementById('pdf_tarih_val').innerText = "-";
 }
 document.getElementById('pdf_depth_val').innerText = (document.getElementById('p_derinlik').value || "0") + " m";
+document.getElementById('pdf_dsi_no_val').innerText = document.getElementById('p_dsi_no').value || "-";
 
 // Mesul Şahıslar Aktarımı
 const firmName = document.getElementById('firm_name').value || "-";
