@@ -470,49 +470,49 @@ color: #000000;
 <h1 class="text-[18px] font-bold text-black uppercase">KUYU KÜTÜĞÜ</h1>
 </div>
 
-<!-- Single Page Layout Grid (Strict Height Contraints) -->
-<div class="grid grid-cols-12 gap-3 flex-1 overflow-hidden" style="max-height: 265mm;">
+<!-- Single Page Layout Grid (Fixed height to ensure alignment) -->
+<div class="grid grid-cols-12 gap-3 flex-1" style="height: 260mm;">
 
 <!-- SOL SÜTUN (%50 Ortalandı) -->
-<div class="col-span-6 flex flex-col h-full" style="max-height: 260mm;">
+<div class="col-span-6 flex flex-col h-full">
 
 <!-- 1. Genel Durum -->
-<div class="mb-2">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Genel Durum</h2>
+<div class="mb-1">
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Genel Durum</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Adres</td>
-<td class="p-1.5 text-black font-normal" id="pdf_location_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold w-[35%] border-r border-black">Adres</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_location_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Ada / Parsel</td>
-<td class="p-1.5 text-black font-normal" id="pdf_mevkii_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Ada / Parsel</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_mevkii_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Koordinat (ED50_6)</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_utm_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Koordinat (ED50_6)</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_utm_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Kuyu Sahibi</td>
-<td class="p-1.5 text-black font-normal" id="pdf_client_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Kuyu Sahibi</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_client_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Açılış Gayesi</td>
-<td class="p-1.5 text-black font-normal" id="pdf_kuyu_amaci">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Açılış Gayesi</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_kuyu_amaci">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Firma Adı</td>
-<td class="p-1.5 text-black font-normal" id="pdf_firm_name_td">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Firma Adı</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_firm_name_td">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Tarihi</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_tarih_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Tarihi</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_tarih_val">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Kuyu Derinliği</td>
-<td class="p-1.5 text-black font-normal" id="pdf_depth_val">0 m</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Kuyu Derinliği</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_depth_val">0 m</td>
 </tr>
 </tbody>
 </table>
@@ -520,18 +520,18 @@ color: #000000;
 </div>
 
 <!-- 2. Mesul Şahıslar -->
-<div class="mb-2">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Mesul Şahıslar</h2>
+<div class="mb-1">
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Mesul Şahıslar</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black" id="pdf_eng_prof_label">Sorumlu Mühendis</td>
-<td class="p-1.5 text-black font-normal" id="pdf_responsible_eng">-</td>
+<td class="text-black px-1 py-0.5 font-bold w-[35%] border-r border-black" id="pdf_eng_prof_label">Sorumlu Mühendis</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_responsible_eng">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Sondör</td>
-<td class="p-1.5 text-black font-normal" id="pdf_driller_val">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Sondör</td>
+<td class="px-1 py-0.5 text-black font-normal" id="pdf_driller_val">-</td>
 </tr>
 </tbody>
 </table>
@@ -539,26 +539,26 @@ color: #000000;
 </div>
 
 <!-- 3. Su Verim Tecrübesi -->
-<div class="mb-2">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Su Verim Tecrübesi</h2>
+<div class="mb-1">
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Su Verim Tecrübesi</h2>
 <div class="border border-black rounded overflow-hidden">
 <table class="w-full text-[10px] text-left">
 <tbody class="divide-y divide-black">
 <tr>
-<td class="text-black p-1.5 font-bold w-[35%] border-r border-black">Kuyu Verimi</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_debi">-</td>
+<td class="text-black px-1 py-0.5 font-bold w-[35%] border-r border-black">Kuyu Verimi</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_debi">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Statik Seviye</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_statik">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Statik Seviye</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_statik">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Dinamik Seviye</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_dinamik">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Dinamik Seviye</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_dinamik">-</td>
 </tr>
 <tr>
-<td class="text-black p-1.5 font-bold border-r border-black">Pompa Çalışma Süresi</td>
-<td class="p-1.5 font-mono text-black font-normal" id="pdf_hyd_sure">-</td>
+<td class="text-black px-1 py-0.5 font-bold border-r border-black">Pompa Çalışma Süresi</td>
+<td class="px-1 py-0.5 font-mono text-black font-normal" id="pdf_hyd_sure">-</td>
 </tr>
 </tbody>
 </table>
@@ -566,11 +566,11 @@ color: #000000;
 </div>
 
 <!-- Krokiler: Kuyu Başı & Lokasyon (Altlı Üstlü) -->
-<div class="mb-2 flex flex-col gap-2 flex-1">
+<div class="mb-1 flex flex-col gap-1 flex-1">
 <!-- Kuyubaşı Şeması (B&W Standard) -->
 <div>
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Kuyu Başı Krokisi</h2>
-<div class="border border-black rounded flex flex-col h-[135px] bg-white items-center justify-center overflow-hidden">
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Kuyu Başı Krokisi</h2>
+<div class="border border-black rounded flex flex-col h-[100px] bg-white items-center justify-center overflow-hidden">
 <svg viewBox="0 10 300 235" class="w-full h-full">
 <defs>
 <pattern id="gravelPattern" width="15" height="15" patternUnits="userSpaceOnUse">
@@ -628,8 +628,8 @@ color: #000000;
 
 <!-- Harita Resmi -->
 <div class="flex flex-col flex-1">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Kuyu Yeri Krokisi</h2>
-<div class="border border-black rounded p-1 flex flex-col flex-1 min-h-[180px]">
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Kuyu Yeri Krokisi</h2>
+<div class="border border-black rounded p-1 flex flex-col flex-1 h-[200px]">
 <div id="pdf_map_image_container" class="w-full h-full bg-white flex items-center justify-center relative overflow-hidden rounded border border-black">
 <img id="pdf_map_static_img" class="absolute inset-0 w-full h-full object-cover" src="" alt="Konum Krokisi">
 </div>
@@ -638,7 +638,7 @@ color: #000000;
 </div>
 
 <!-- Teknik Beyan ve İmzalar -->
-<div class="p-2 border border-black rounded mt-auto flex flex-row justify-between items-center gap-2">
+<div class="p-1.5 border border-black rounded mt-auto flex flex-row justify-between items-center gap-2">
 <div class="flex-1">
 <p class="text-[9px] text-black italic leading-relaxed text-justify mb-2">
 İş bu kütükte sunulan jeolojik formasyon kesitleri, kuyu teçhiz dizilimi ve akifer verim parametreleri tarafımızca doğrulanarak kayıt altına alınmıştır.
@@ -657,9 +657,9 @@ color: #000000;
 </div>
 
 <!-- SAĞ SÜTUN (%50 Ortalandı) -->
-<div class="col-span-6 flex flex-col h-full" style="max-height: 260mm;">
-<h2 class="text-[11px] font-bold text-black border-b border-black pb-1 mb-1.5 uppercase tracking-wide">Kuyu Şeması</h2>
-<div class="border border-black rounded p-1 flex-1 flex flex-col items-center justify-center bg-white">
+<div class="col-span-6 flex flex-col h-full">
+<h2 class="text-[11px] font-bold text-black border-b border-black pb-0.5 mb-1 uppercase tracking-wide">Kuyu Şeması</h2>
+<div class="border border-black rounded p-1 flex-1 flex flex-col items-center justify-center bg-white h-full">
 <img id="pdf_canvas_img" src="" class="w-full h-full object-contain" alt="Kuyu Şeması">
 </div>
 </div>
